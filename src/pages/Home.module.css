@@ -37,6 +37,7 @@
 .profileContainer {
   flex-shrink: 0;
   position: relative;
+  perspective: 1000px;
 }
 
 .profileFrame {
@@ -49,19 +50,27 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
+  background-color: transparent;
+  transition: transform 0.5s ease;
 }
 
 .profileFrame img {
   display: block;
   width: 100%;
   height: auto;
-  transition: transform 0.5s ease;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
 }
 
 .profileFrame:hover img {
-  transform: scale(1.05);
+  transform: scale(1.2);
+  filter: brightness(1.1);
+}
+
+.profileFrame:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
 .profileOverlay {
@@ -70,8 +79,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.2));
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.profileFrame:hover .profileOverlay {
+  opacity: 1;
 }
 
 .skills {
@@ -89,12 +109,37 @@
   background-color: var(--color-gray-100);
   padding: var(--spacing-lg);
   border-radius: 8px;
-  text-align: center;
-  transition: transform 0.2s ease;
+  text-align: left;
+  transition: all 0.3s ease;
 }
 
 .skillCard:hover {
   transform: translateY(-4px);
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-gray-200);
+  border-radius: 3px;
+  margin: var(--spacing-sm) 0;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--color-gray-900);
+  border-radius: 3px;
+}
+
+.percentage {
+  font-size: 0.9rem;
+  color: var(--color-gray-600);
+}
+
+.skillsTitle {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
 }
 
 /* Responsive design */

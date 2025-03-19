@@ -6,15 +6,21 @@
 .main {
   flex: 1;
   padding: var(--spacing-xl);
-  margin-left: var(--sidebar-width); /* Push content to the right of sidebar */
-  width: calc(100% - var(--sidebar-width)); /* Ensure main content doesn't overlap sidebar */
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
   min-height: 100vh;
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.main.collapsed {
+  margin-left: var(--sidebar-width-collapsed);
+  width: calc(100% - var(--sidebar-width-collapsed));
 }
 
 @media (max-width: 768px) {
   .main {
-    margin-left: 0;
-    width: 100%;
+    margin-left: var(--sidebar-width-collapsed);
+    width: calc(100% - var(--sidebar-width-collapsed));
     padding-top: calc(var(--header-height) + var(--spacing-lg));
   }
 } 
