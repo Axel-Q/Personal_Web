@@ -15,7 +15,7 @@ const GitHub: React.FC = () => {
   });
 
   if (error) return <div>Failed to load</div>;
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <div>Loading...</div>; 
 
   return (
     <PageTransition>

@@ -7,21 +7,34 @@ const Home: React.FC = () => {
   return (
     <PageTransition>
       <section className={styles.hero}>
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <div className={styles.heroContent}>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Hi, I'm <span className={styles.highlight}>Axel Qian</span>
+          </motion.h1>
+          <motion.p 
+            className={styles.subtitle}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            Full Stack Developer specializing in modern web applications
+          </motion.p>
+        </div>
+        <motion.div 
+          className={styles.profileContainer}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3 }}
         >
-          Hi, I'm <span className={styles.highlight}>Your Name</span>
-        </motion.h1>
-        <motion.p 
-          className={styles.subtitle}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          Full Stack Developer specializing in modern web applications
-        </motion.p>
+          <div className={styles.profileFrame}>
+            <img src="/profile-photo.jpg" alt="Axel Qian" />
+            <div className={styles.profileOverlay}></div>
+          </div>
+        </motion.div>
       </section>
 
       <section className={styles.skills}>

@@ -1,9 +1,15 @@
 .hero {
   min-height: 80vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   padding: var(--spacing-xl);
+  gap: var(--spacing-xl);
+}
+
+.heroContent {
+  flex: 1;
+  max-width: 600px;
 }
 
 .highlight {
@@ -28,6 +34,40 @@
   margin-top: var(--spacing-md);
 }
 
+.profileContainer {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.profileFrame {
+  width: 350px;
+  height: 450px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profileFrame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.profileFrame:hover img {
+  transform: scale(1.05);
+}
+
+.profileOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.2));
+  pointer-events: none;
+}
+
 .skills {
   padding: var(--spacing-xl);
 }
@@ -49,4 +89,24 @@
 
 .skillCard:hover {
   transform: translateY(-4px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: var(--spacing-lg);
+  }
+
+  .profileFrame {
+    width: 280px;
+    height: 350px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .highlight::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 } 
