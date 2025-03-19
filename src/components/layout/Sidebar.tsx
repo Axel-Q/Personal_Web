@@ -1,17 +1,26 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { HiChevronLeft, HiChevronRight } from 'react-icons/hi';
+import { NavLink } from 'react-router-dom';
+import { 
+  HiChevronLeft, 
+  HiChevronRight,
+  HiHome,
+  HiDocument,
+  HiCollection,
+  HiCode
+} from 'react-icons/hi';
 import styles from './Sidebar.module.css';
 
-const Sidebar = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+interface SidebarProps {
+  isExpanded: boolean;
+  onToggle: () => void;
+}
 
+const Sidebar = ({ isExpanded, onToggle }: SidebarProps) => {
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/resume', label: 'Resume' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/github', label: 'GitHub' },
+    { path: '/', label: 'Home', icon: <HiHome size={20} /> },
+    { path: '/resume', label: 'Resume', icon: <HiDocument size={20} /> },
+    { path: '/projects', label: 'Projects', icon: <HiCollection size={20} /> },
+    { path: '/github', label: 'GitHub', icon: <HiCode size={20} /> },
   ];
 
   return (
@@ -20,16 +29,8 @@ const Sidebar = () => {
       animate={{ width: isExpanded ? 'var(--sidebar-width)' : 'var(--sidebar-width-collapsed)' }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
     >
-      <button 
-        className={styles.toggleButton}
-        onClick={() => setIsExpanded(!isExpanded)}
-        aria-label={isExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
-      >
-        {isExpanded ? <HiChevronLeft /> : <HiChevronRight />}
-      </button>
-
       <div className={styles.logo}>
-        {isExpanded && (
+        {isExpanded ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -37,6 +38,14 @@ const Sidebar = () => {
           >
             <h1>Axel's</h1>
             <h2>Portfolio</h2>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            className={styles.logoIcon}
+          >
+            A
           </motion.div>
         )}
       </div>
@@ -47,13 +56,27 @@ const Sidebar = () => {
             <NavLink 
               to={item.path}
               className={({ isActive }) => 
-                isActive ? styles.activeLink : styles.link
+                `${isActive ? styles.activeLink : styles.link} ${!isExpanded ? styles.iconOnly : ''}`
               }
+              title={item.label}
             >
-              {isExpanded ? item.label : item.label[0]}
+              <span className={styles.icon}>{item.icon}</span>
+              {isExpanded && <span className={styles.label}>{item.label}</span>}
             </NavLink>
           </li>
         ))}
+        <li className={styles.toggleButtonContainer}>
+          <button 
+            className={`${styles.toggleButton} ${!isExpanded ? styles.collapsed : ''}`}
+            onClick={onToggle}
+            aria-label={isExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
+          >
+            <span className={styles.icon}>
+              {isExpanded ? <HiChevronLeft size={16} /> : <HiChevronRight size={16} />}
+            </span>
+            {isExpanded && <span className={styles.label}>Collapse</span>}
+          </button>
+        </li>
       </ul>
     </motion.nav>
   );

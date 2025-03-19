@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Sidebar from './components/layout/Sidebar';
@@ -11,11 +11,16 @@ const Projects = lazy(() => import('./pages/Projects'));
 const GitHub = lazy(() => import('./pages/GitHub'));
 
 function App() {
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+
   return (
     <BrowserRouter>
       <div className={styles.app}>
-        <Sidebar />
-        <main className={styles.main}>
+        <Sidebar 
+          isExpanded={isSidebarExpanded} 
+          onToggle={() => setIsSidebarExpanded(!isSidebarExpanded)} 
+        />
+        <main className={`${styles.main} ${!isSidebarExpanded ? styles.mainCollapsed : ''}`}>
           <Suspense fallback={<LoadingSpinner />}>
             <AnimatePresence mode="wait">
               <Routes>

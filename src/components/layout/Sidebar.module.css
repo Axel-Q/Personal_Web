@@ -18,49 +18,50 @@
   padding: var(--spacing-lg) var(--spacing-sm);
 }
 
-.toggleButton {
-  position: absolute;
-  right: 12px;
-  top: 20px;
-  width: 24px;
-  height: 24px;
-  background-color: var(--color-background);
-  border: 1px solid var(--color-gray-200);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 101;
-  transition: all 0.3s ease;
-}
-
-.toggleButton:hover {
-  background-color: var(--color-gray-100);
-  transform: scale(1.1);
-}
-
 .logo {
   margin-bottom: var(--spacing-xl);
   overflow: hidden;
   white-space: nowrap;
 }
 
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--color-gray-900);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
 .navItems {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
-.link {
-  display: block;
-  padding: var(--spacing-md);
+.link, .toggleButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
   color: var(--color-gray-700);
   text-decoration: none;
   transition: all 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: inherit;
 }
 
 .activeLink {
@@ -70,9 +71,31 @@
   border-radius: 4px;
 }
 
-.link:hover {
+.link:hover, .toggleButton:hover {
   background-color: var(--color-gray-100);
   border-radius: 4px;
+}
+
+.iconOnly {
+  justify-content: center;
+  padding: var(--spacing-sm);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+}
+
+.label {
+  margin-left: var(--spacing-xs);
+}
+
+.toggleButtonContainer {
+  margin-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-gray-200);
+  padding-top: var(--spacing-lg);
 }
 
 @media (max-width: 768px) {
@@ -80,7 +103,7 @@
     width: var(--sidebar-width-collapsed);
   }
   
-  .toggleButton {
+  .toggleButtonContainer {
     display: none;
   }
 } 
