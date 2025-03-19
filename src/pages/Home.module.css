@@ -1,0 +1,52 @@
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.highlight {
+  color: var(--color-gray-900);
+  position: relative;
+  display: inline-block;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-gray-900);
+}
+
+.subtitle {
+  font-size: var(--font-size-h3);
+  color: var(--color-gray-600);
+  margin-top: var(--spacing-md);
+}
+
+.skills {
+  padding: var(--spacing-xl);
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+.skillCard {
+  background-color: var(--color-gray-100);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.skillCard:hover {
+  transform: translateY(-4px);
+} 

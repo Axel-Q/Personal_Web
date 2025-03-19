@@ -1,0 +1,30 @@
+.container {
+  padding: var(--spacing-xl);
+}
+
+.timeline {
+  margin-top: var(--spacing-xl);
+}
+
+.timelineItem {
+  padding: var(--spacing-lg);
+  border-left: 2px solid var(--color-gray-300);
+  margin-left: 20px;
+  position: relative;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 24px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--color-gray-900);
+}
+
+.period {
+  color: var(--color-gray-600);
+  font-size: 0.9rem;
+} 

@@ -1,0 +1,20 @@
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: var(--spacing-xl);
+  margin-left: var(--sidebar-width); /* Push content to the right of sidebar */
+  width: calc(100% - var(--sidebar-width)); /* Ensure main content doesn't overlap sidebar */
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0;
+    width: 100%;
+    padding-top: calc(var(--header-height) + var(--spacing-lg));
+  }
+} 
