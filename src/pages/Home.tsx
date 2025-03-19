@@ -1,24 +1,47 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
+  const skills = [
+    { name: 'React', level: 90 },
+    { name: 'TypeScript', level: 85 },
+    { name: 'Node.js', level: 80 },
+    { name: 'GraphQL', level: 75 }
+  ];
+
+  const skillVariants = {
+    initial: { scale: 0.9, opacity: 0 },
+    animate: { scale: 1, opacity: 1 },
+    hover: { 
+      scale: 1.1,
+      boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
+      transition: {
+        type: "spring",
+        stiffness: 300
+      }
+    }
+  };
+
   return (
     <PageTransition>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
             transition={{ delay: 0.2 }}
           >
             Hi, I'm <span className={styles.highlight}>Axel Qian</span>
           </motion.h1>
           <motion.p 
             className={styles.subtitle}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
             transition={{ delay: 0.4 }}
           >
             Full Stack Developer specializing in modern web applications
@@ -26,8 +49,9 @@ const Home: React.FC = () => {
         </div>
         <motion.div 
           className={styles.profileContainer}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
+          variants={scaleIn}
+          initial="initial"
+          animate="animate"
           transition={{ delay: 0.3 }}
         >
           <div className={styles.profileFrame}>
@@ -38,20 +62,50 @@ const Home: React.FC = () => {
       </section>
 
       <section className={styles.skills}>
-        <h2>Skills</h2>
-        <div className={styles.skillGrid}>
-          {['React', 'TypeScript', 'Node.js', 'GraphQL'].map((skill, index) => (
+        <motion.h2
+          variants={fadeInUp}
+          initial="initial"
+          animate="animate"
+          className={styles.skillsTitle}
+        >
+          Skills
+        </motion.h2>
+        <motion.div 
+          className={styles.skillGrid}
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
+          {skills.map((skill, index) => (
             <motion.div 
-              key={skill}
+              key={skill.name}
               className={styles.skillCard}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 * index }}
+              variants={skillVariants}
+              initial="initial"
+              animate="animate"
+              whileHover="hover"
+              transition={{ delay: index * 0.1 }}
             >
-              {skill}
+              <h3>{skill.name}</h3>
+              <motion.div className={styles.progressBar}>
+                <motion.div 
+                  className={styles.progressFill}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${skill.level}%` }}
+                  transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                />
+              </motion.div>
+              <motion.span 
+                className={styles.percentage}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 + index * 0.1 }}
+              >
+                {skill.level}%
+              </motion.span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </PageTransition>
   );

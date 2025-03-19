@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 import styles from './Projects.module.css';
 
 const Projects: React.FC = () => {
@@ -26,23 +28,45 @@ const Projects: React.FC = () => {
   return (
     <PageTransition>
       <div className={styles.container}>
-        <h1>Projects</h1>
+        <motion.h1
+          variants={fadeInUp}
+          initial="initial"
+          animate="animate"
+        >
+          Projects
+        </motion.h1>
         
-        <div className={styles.filters}>
+        <motion.div 
+          className={styles.filters}
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
           {filters.map(filter => (
-            <button
+            <motion.button
               key={filter}
+              variants={fadeInUp}
               className={`${styles.filterButton} ${activeFilter === filter ? styles.active : ''}`}
               onClick={() => setActiveFilter(filter)}
             >
               {filter}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className={styles.projectGrid}>
+        <motion.div 
+          className={styles.projectGrid}
+          variants={staggerContainer}
+          initial="initial"
+          animate="animate"
+        >
           {filteredProjects.map(project => (
-            <div key={project.id} className={styles.projectCard}>
+            <motion.div 
+              key={project.id} 
+              className={styles.projectCard}
+              variants={scaleIn}
+              whileHover={{ y: -5 }}
+            >
               <div className={styles.projectImage}>
                 <img src={project.imageUrl} alt={project.title} />
               </div>
@@ -51,13 +75,19 @@ const Projects: React.FC = () => {
                 <p>{project.description}</p>
                 <div className={styles.tags}>
                   {project.tags.map(tag => (
-                    <span key={tag} className={styles.tag}>{tag}</span>
+                    <motion.span 
+                      key={tag} 
+                      className={styles.tag}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {tag}
+                    </motion.span>
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </PageTransition>
   );
