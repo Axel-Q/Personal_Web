@@ -77,6 +77,13 @@ const Home: React.FC = () => {
     }
   };
 
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <PageTransition>
       {/* Hero Section with intro */}
@@ -158,6 +165,8 @@ const Home: React.FC = () => {
           initial="initial"
           animate="animate"
           className={styles.skillsTitle}
+          onClick={scrollToBottom}
+          whileHover={{ scale: 1.05 }}
         >
           Technical Skills
         </motion.h2>
