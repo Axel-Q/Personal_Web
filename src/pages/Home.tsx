@@ -11,6 +11,16 @@ const Home: React.FC = () => {
     { name: 'Node.js', level: 80 },
     { name: 'GraphQL', level: 75 }
   ];
+  const certificates = [
+    { 
+      name: 'AWS Solution Architect Associate Certified', 
+      image: '../../public/saa.jpg'
+    },
+    { 
+      name: 'Google Advanced Data Analytics Certificate', 
+      image: '../../public/google.jpg'
+    }
+  ];
 
   const skillVariants = {
     initial: { scale: 0.9, opacity: 0 },
@@ -27,25 +37,63 @@ const Home: React.FC = () => {
 
   return (
     <PageTransition>
+      {/* Hero Section with intro */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <motion.h1 
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.2 }}
-          >
-            Hi, I'm <span className={styles.highlight}>Axel Qian</span>
-          </motion.h1>
-          <motion.p 
-            className={styles.subtitle}
-            variants={fadeInUp}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.4 }}
-          >
-            Full Stack Developer specializing in modern web applications
-          </motion.p>
+          <div>
+            <motion.h1 
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+              transition={{ delay: 0.2 }}
+            >
+              Hi, I'm <span className={styles.highlight}>Axel Qian</span>
+            </motion.h1>
+            <motion.p 
+              className={styles.subtitle}
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+              transition={{ delay: 0.4 }}
+            >
+              Full Stack Developer specializing in modern web applications
+            </motion.p>
+          </div>
+          
+          {/* Certificates Section */}
+          <motion.div className={styles.heroBottomContent}>
+            <motion.h3
+              className={styles.certificatesTitle}
+              variants={fadeInUp}
+              initial="initial"
+              animate="animate"
+              transition={{ delay: 0.5 }}
+            >
+              Certificates
+            </motion.h3>
+            
+            <motion.div 
+              className={styles.certificatesContainer}
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              {certificates.map((cert, index) => (
+                <motion.div 
+                  key={cert.name}
+                  className={styles.certificateBadge}
+                  variants={fadeInUp}
+                  initial="initial"
+                  animate="animate"
+                  whileHover={{ x: 5, scale: 1.02 }}
+                  transition={{ delay: 0.6 + (index * 0.1) }}
+                >
+                  <img src={cert.image} alt={cert.name} />
+                  <span>{cert.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
         <motion.div 
           className={styles.profileContainer}
@@ -61,6 +109,7 @@ const Home: React.FC = () => {
         </motion.div>
       </section>
 
+      {/* Skills Section */}
       <section className={styles.skills}>
         <motion.h2
           variants={fadeInUp}

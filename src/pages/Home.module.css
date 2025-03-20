@@ -1,16 +1,25 @@
 .hero {
-  min-height: 70vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-lg);
-  gap: var(--spacing-xl);
+  padding: 0;
   margin-top: -2rem;
+  margin-bottom: 0;
+  width: 100%;
+  position: relative;
+  flex-wrap: nowrap;
 }
 
 .heroContent {
   flex: 1;
   max-width: 600px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 400px;
+  padding: var(--spacing-xl) 0 var(--spacing-md) var(--spacing-xl);
 }
 
 .highlight {
@@ -33,19 +42,39 @@
   font-size: var(--font-size-h3);
   color: var(--color-gray-600);
   margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.heroBottomContent {
+  margin-top: var(--spacing-xxl);
+  position: relative;
+  padding-top: var(--spacing-md);
+}
+
+.heroBottomContent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 1px;
+  background-color: var(--color-gray-300);
 }
 
 .profileContainer {
-  flex-shrink: 0;
   position: relative;
   perspective: 1000px;
+  align-self: center;
+  padding-right: var(--spacing-xl);
+  padding-bottom: var(--spacing-xl);
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .profileFrame {
-  width: auto;
+  width: 320px;
   height: auto;
-  max-width: 320px;
-  max-height: 400px;
   position: relative;
   display: flex;
   align-items: center;
@@ -96,7 +125,13 @@
 }
 
 .skills {
-  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-xl);
+  padding: var(--spacing-xl);
+  margin-top: 0;
+}
+
+/* Added new certificates section styling */
+.certificates {
+  display: none; /* Hide this section as we moved certificates to hero */
 }
 
 .skillGrid {
@@ -143,23 +178,156 @@
   margin-bottom: var(--spacing-xl);
 }
 
+.certificatesTitle {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-gray-800);
+  font-size: var(--font-size-h4);
+  text-align: left;
+  margin-top: var(--spacing-sm);
+}
+
+.certificatesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  justify-content: flex-start;
+}
+
+.certificateBadge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: transparent;
+  padding: var(--spacing-xs) 0;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.certificateBadge img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-gray-200);
+  margin-right: var(--spacing-sm);
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.certificateBadge:hover img {
+  border-color: var(--color-gray-900);
+  transform: scale(1.05);
+}
+
+.certificateBadge:hover {
+  transform: translateX(5px);
+}
+
+.certificateBadge span {
+  font-size: 0.8rem;
+  color: var(--color-gray-700);
+  max-width: 100%;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+.certificateBadge:hover span {
+  color: var(--color-gray-900);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   .hero {
     flex-direction: column-reverse;
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: 0;
     margin-top: -1rem;
+    min-height: auto;
+    width: 100%;
   }
 
+  .heroContent {
+    height: auto;
+    min-height: auto;
+    justify-content: flex-start;
+    padding: var(--spacing-lg);
+    width: 100%;
+  }
+  
+  .subtitle {
+    margin-bottom: var(--spacing-md);
+  }
+  
+  .profileContainer {
+    padding-right: 0;
+    padding-top: var(--spacing-lg);
+    margin-right: 0;
+    width: 100%;
+  }
+  
   .profileFrame {
     width: 260px;
-    height: 320px;
+    height: auto;
     margin-bottom: var(--spacing-lg);
   }
 
   .highlight::after {
     left: 50%;
     transform: translateX(-50%);
+  }
+  
+  .heroBottomContent {
+    margin-top: var(--spacing-xl);
+    align-items: center;
+    margin-bottom: 0;
+    align-self: center;
+    width: 100%;
+  }
+  
+  .heroBottomContent::before {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+  }
+  
+  .certificatesTitle {
+    text-align: center;
+  }
+  
+  .certificatesContainer {
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  .certificateBadge {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .certificateBadge span {
+    text-align: center;
+  }
+}
+
+/* Additional responsiveness for sidebar collapse */
+@media (max-width: 1200px) {
+  .hero {
+    padding-right: var(--spacing-md);
+  }
+  
+  .profileContainer {
+    margin-right: var(--spacing-md);
+  }
+  
+  .profileFrame {
+    width: 280px;
   }
 } 
