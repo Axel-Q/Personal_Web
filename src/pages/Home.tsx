@@ -55,7 +55,7 @@ const Home: React.FC = () => {
           transition={{ delay: 0.3 }}
         >
           <div className={styles.profileFrame}>
-            <img src="/profile-photo.jpg" alt="Axel Qian" />
+            <img src="../public/profile-photo.jpg" alt="Axel Qian" />
             <div className={styles.profileOverlay}></div>
           </div>
         </motion.div>
