@@ -126,122 +126,97 @@
 }
 
 .skills {
-
+  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-xxl);
   margin-top: 0;
+  text-align: center;
+  background-color: var(--color-gray-50);
 }
 
-/* Added new certificates section styling */
-.certificates {
-  display: none; /* Hide this section as we moved certificates to hero */
-}
-
-.skillGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-lg);
-}
-
-.skillCard {
-  background-color: var(--color-gray-100);
-  padding: var(--spacing-lg);
-  border-radius: 8px;
-  text-align: left;
-  transition: all 0.3s ease;
-}
-
-.skillCard:hover {
-  transform: translateY(-4px);
-}
-
-.progressBar {
-  width: 100%;
-  height: 6px;
-  background-color: var(--color-gray-200);
-  border-radius: 3px;
-  margin: var(--spacing-sm) 0;
-  overflow: hidden;
-}
-
-.progressFill {
-  height: 100%;
-  background-color: var(--color-gray-900);
-  border-radius: 3px;
-}
-
-.percentage {
-  font-size: 0.9rem;
-  color: var(--color-gray-600);
-}
-
+/* Skills title styling */
 .skillsTitle {
   text-align: center;
   margin-bottom: var(--spacing-xl);
+  position: relative;
+  display: inline-block;
+  color: var(--color-gray-900);
+  font-weight: 600;
 }
 
-.certificatesTitle {
-  margin-bottom: var(--spacing-md);
-  color: var(--color-gray-800);
-  font-size: var(--font-size-h4);
-  text-align: left;
-  margin-top: var(--spacing-sm);
+.skillsTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background-color: var(--color-gray-900);
 }
 
-.certificatesContainer {
+/* Skills grid and category containers */
+.skillGrid {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-xl);
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.skillCategory {
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.skillCategory h3 {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-gray-900);
+  font-size: var(--font-size-h4);
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 2px solid var(--color-gray-200);
+}
+
+/* Skill list and tag styling */
+.skillList {
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--spacing-sm);
   margin-top: var(--spacing-sm);
-  justify-content: flex-start;
 }
 
-.certificateBadge {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  text-align: left;
+.skillTag {
+  background-color: white;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: var(--color-gray-800);
   transition: all 0.3s ease;
-  margin-bottom: 0;
-  background-color: transparent;
-  padding: var(--spacing-xs) 0;
-  border-radius: 8px;
-  box-shadow: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
 }
 
-.certificateBadge img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--color-gray-200);
-  margin-right: var(--spacing-sm);
-  margin-bottom: 0;
-  transition: all 0.3s ease;
+.level-advanced {
+  background-color: rgba(236, 253, 245, 1); /* Light green */
+  border-left: 3px solid rgba(16, 185, 129, 1); /* Green */
 }
 
-.certificateBadge:hover img {
-  border-color: var(--color-gray-900);
-  transform: scale(1.05);
+.level-intermediate {
+  background-color: rgba(239, 246, 255, 1); /* Light blue */
+  border-left: 3px solid rgba(59, 130, 246, 1); /* Blue */
 }
 
-.certificateBadge:hover {
-  transform: translateX(5px);
+.level-beginner {
+  background-color: rgba(254, 242, 242, 1); /* Light red */
+  border-left: 3px solid rgba(239, 68, 68, 1); /* Red */
 }
 
-.certificateBadge span {
-  font-size: 0.8rem;
-  color: var(--color-gray-700);
-  max-width: 100%;
-  text-align: left;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
-  white-space: normal;
-  line-height: 1.2;
-}
-
-.certificateBadge:hover span {
-  color: var(--color-gray-900);
+.skillTag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive design */
@@ -316,6 +291,39 @@
   .certificateBadge span {
     text-align: center;
   }
+  
+  .skills {
+    padding: var(--spacing-lg);
+  }
+  
+  .skillCategory h3 {
+    font-size: var(--font-size-h5);
+    margin-bottom: var(--spacing-sm);
+    display: block;
+    text-align: center;
+    border-bottom: none;
+  }
+  
+  .skillCategory h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-gray-900);
+  }
+  
+  .skillList {
+    gap: var(--spacing-xs);
+    justify-content: center;
+  }
+  
+  .skillTag {
+    font-size: 0.8rem;
+    padding: var(--spacing-xxs) var(--spacing-sm);
+  }
 }
 
 /* Additional responsiveness for sidebar collapse */
@@ -331,4 +339,74 @@
   .profileFrame {
     width: 280px;
   }
+}
+
+/* Added new certificates section styling */
+.certificates {
+  display: none; /* Hide this section as we moved certificates to hero */
+}
+
+.certificatesTitle {
+  margin-bottom: var(--spacing-md);
+  color: var(--color-gray-800);
+  font-size: var(--font-size-h4);
+  text-align: left;
+  margin-top: var(--spacing-sm);
+}
+
+.certificatesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+  justify-content: flex-start;
+}
+
+.certificateBadge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  transition: all 0.3s ease;
+  margin-bottom: 0;
+  background-color: transparent;
+  padding: var(--spacing-xs) 0;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.certificateBadge img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-gray-200);
+  margin-right: var(--spacing-sm);
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.certificateBadge:hover img {
+  border-color: var(--color-gray-900);
+  transform: scale(1.05);
+}
+
+.certificateBadge:hover {
+  transform: translateX(5px);
+}
+
+.certificateBadge span {
+  font-size: 0.8rem;
+  color: var(--color-gray-700);
+  max-width: 100%;
+  text-align: left;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  white-space: normal;
+  line-height: 1.2;
+}
+
+.certificateBadge:hover span {
+  color: var(--color-gray-900);
 } 

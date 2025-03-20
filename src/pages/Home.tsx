@@ -5,12 +5,54 @@ import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
-  const skills = [
-    { name: 'React', level: 90 },
-    { name: 'TypeScript', level: 85 },
-    { name: 'Node.js', level: 80 },
-    { name: 'GraphQL', level: 75 }
+  const skillCategories = [
+    {
+      category: "Languages",
+      skills: [
+        { name: 'Python', level: 'Advanced' },
+        { name: 'JavaScript', level: 'Advanced' },
+        { name: 'TypeScript', level: 'Advanced' },
+        { name: 'SQL', level: 'Advanced' },
+        { name: 'Rust', level: 'Intermediate' },
+        { name: 'C/C++', level: 'Intermediate' },
+        { name: 'Java', level: 'Intermediate' },
+        { name: 'HTML', level: 'Advanced' },
+        { name: 'CSS', level: 'Advanced' },
+      ]
+    },
+    {
+      category: "Cloud & Databases",
+      skills: [
+        { name: 'AWS', level: 'Advanced' },
+        { name: 'Azure', level: 'Intermediate' },
+        { name: 'GCP', level: 'Intermediate' },
+        { name: 'MongoDB', level: 'Advanced' },
+        { name: 'Firebase', level: 'Advanced' },
+        { name: 'PostgreSQL', level: 'Advanced' },
+        { name: 'MySQL', level: 'Advanced' },
+        { name: 'DynamoDB', level: 'Intermediate' },
+        { name: 'Redis', level: 'Intermediate' },
+      ]
+    },
+    {
+      category: "Tools & Technologies",
+      skills: [
+        { name: 'React', level: 'Advanced' },
+        { name: 'Kubernetes', level: 'Intermediate' },
+        { name: 'Docker', level: 'Advanced' },
+        { name: 'Jenkins', level: 'Intermediate' },
+        { name: 'Git', level: 'Advanced' },
+        { name: 'REST API', level: 'Advanced' },
+        { name: 'GraphQL', level: 'Intermediate' },
+        { name: 'Linux', level: 'Advanced' },
+        { name: 'Bash', level: 'Advanced' },
+        { name: 'JWT', level: 'Intermediate' },
+        { name: 'OAuth', level: 'Intermediate' },
+        { name: 'TLS/SSL', level: 'Intermediate' },
+      ]
+    }
   ];
+  
   const certificates = [
     { 
       name: 'AWS Solution Architect Associate Certified', 
@@ -26,8 +68,8 @@ const Home: React.FC = () => {
     initial: { scale: 0.9, opacity: 0 },
     animate: { scale: 1, opacity: 1 },
     hover: { 
-      scale: 1.1,
-      boxShadow: "0px 5px 15px rgba(0,0,0,0.1)",
+      scale: 1.05,
+      boxShadow: "0px 3px 10px rgba(0,0,0,0.1)",
       transition: {
         type: "spring",
         stiffness: 300
@@ -125,33 +167,31 @@ const Home: React.FC = () => {
           initial="initial"
           animate="animate"
         >
-          {skills.map((skill, index) => (
+          {skillCategories.map((category, categoryIndex) => (
             <motion.div 
-              key={skill.name}
-              className={styles.skillCard}
-              variants={skillVariants}
+              key={category.category}
+              className={styles.skillCategory}
+              variants={fadeInUp}
               initial="initial"
               animate="animate"
-              whileHover="hover"
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: categoryIndex * 0.2 }}
             >
-              <h3>{skill.name}</h3>
-              <motion.div className={styles.progressBar}>
-                <motion.div 
-                  className={styles.progressFill}
-                  initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                />
+              <h3>{category.category}</h3>
+              <motion.div className={styles.skillList}>
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div 
+                    key={skill.name}
+                    className={`${styles.skillTag} ${styles[`level-${skill.level.toLowerCase()}`]}`}
+                    variants={skillVariants}
+                    initial="initial"
+                    animate="animate"
+                    whileHover="hover"
+                    transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                  >
+                    {skill.name}
+                  </motion.div>
+                ))}
               </motion.div>
-              <motion.span 
-                className={styles.percentage}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1 + index * 0.1 }}
-              >
-                {skill.level}%
-              </motion.span>
             </motion.div>
           ))}
         </motion.div>
