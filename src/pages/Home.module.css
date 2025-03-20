@@ -5,7 +5,7 @@
   justify-content: space-between;
   padding: 0;
   margin-top: -5rem;
-  margin-bottom: 0;
+  margin-bottom: -2rem;
   width: 100%;
   position: relative;
   flex-wrap: nowrap;
@@ -129,17 +129,23 @@
   padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-xxl);
   margin-top: 0;
   text-align: center;
-  background-color: var(--color-gray-50);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 
 /* Skills title styling */
 .skillsTitle {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
   position: relative;
   display: inline-block;
-  color: var(--color-gray-900);
+  color: #1a202c;
   font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .skillsTitle::after {
@@ -148,36 +154,57 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 40px;
+  width: 120px;
   height: 3px;
-  background-color: var(--color-gray-900);
+  background: linear-gradient(90deg, #805ad5 0%, #3182ce 100%);
 }
 
 /* Skills grid and category containers */
 .skillGrid {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
-  margin-top: var(--spacing-xl);
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+
+  max-width: none;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+
 }
 
 .skillCategory {
   text-align: left;
   transition: all 0.3s ease;
+  padding: var(--spacing-md) 0;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5);
+
+}
+
+.skillCategory:last-child {
+  border-bottom: none;
 }
 
 .skillCategory h3 {
   margin-bottom: var(--spacing-md);
-  color: var(--color-gray-900);
+  color: #1a202c;
   font-size: var(--font-size-h4);
   position: relative;
   display: inline-block;
   font-weight: 600;
   padding-bottom: var(--spacing-xs);
-  border-bottom: 2px solid var(--color-gray-200);
+  letter-spacing: 0.5px;
+}
+
+.skillCategory h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #805ad5 0%, #3182ce 100%);
 }
 
 /* Skill list and tag styling */
@@ -189,34 +216,38 @@
 }
 
 .skillTag {
-  background-color: white;
+  background-color: #f8fafc;
   padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 30px;
-  font-size: 0.9rem;
-  color: var(--color-gray-800);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #1a202c;
   transition: all 0.3s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
   font-weight: 500;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  padding-left: var(--spacing-md);
+  letter-spacing: 0.2px;
+  border-left: 3px solid;
 }
 
 .level-advanced {
-  background-color: rgba(236, 253, 245, 1); /* Light green */
-  border-left: 3px solid rgba(16, 185, 129, 1); /* Green */
+  border-left-color: #805ad5; /* Elegant purple */
 }
 
 .level-intermediate {
-  background-color: rgba(239, 246, 255, 1); /* Light blue */
-  border-left: 3px solid rgba(59, 130, 246, 1); /* Blue */
+  border-left-color: #3182ce; /* Rich blue */
 }
 
 .level-beginner {
-  background-color: rgba(254, 242, 242, 1); /* Light red */
-  border-left: 3px solid rgba(239, 68, 68, 1); /* Red */
+  border-left-color: #e53e3e; /* Deep red */
 }
 
 .skillTag:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* Responsive design */
@@ -293,7 +324,12 @@
   }
   
   .skills {
-    padding: var(--spacing-lg);
+    padding: var(--spacing-xl) var(--spacing-md);
+  }
+  
+  .skillCategory {
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-sm);
   }
   
   .skillCategory h3 {
@@ -301,18 +337,16 @@
     margin-bottom: var(--spacing-sm);
     display: block;
     text-align: center;
-    border-bottom: none;
   }
   
   .skillCategory h3::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
     width: 30px;
     height: 2px;
-    background-color: var(--color-gray-900);
   }
   
   .skillList {
@@ -323,6 +357,8 @@
   .skillTag {
     font-size: 0.8rem;
     padding: var(--spacing-xxs) var(--spacing-sm);
+    padding-left: var(--spacing-sm);
+    border-left-width: 2px;
   }
 }
 

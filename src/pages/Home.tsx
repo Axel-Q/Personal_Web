@@ -159,7 +159,7 @@ const Home: React.FC = () => {
           animate="animate"
           className={styles.skillsTitle}
         >
-          Skills
+          Technical Skills
         </motion.h2>
         <motion.div 
           className={styles.skillGrid}
