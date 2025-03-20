@@ -86,7 +86,7 @@ const Home: React.FC = () => {
                   initial="initial"
                   animate="animate"
                   whileHover={{ x: 5, scale: 1.02 }}
-                  transition={{ delay: 0.6 + (index * 0.1) }}
+                  transition={{ delay: 0.1 + (index * 0.1) }}
                 >
                   <img src={cert.image} alt={cert.name} />
                   <span>{cert.name}</span>
