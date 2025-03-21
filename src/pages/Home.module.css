@@ -1,3 +1,51 @@
+/* Core variables for elegant black and white theme */
+:root {
+  --elegant-black: #000000;
+  --elegant-dark: #1a1a1a;
+  --elegant-gray-dark: #333333;
+  --elegant-gray: #666666;
+  --elegant-gray-light: #999999;
+  --elegant-light: #e0e0e0;
+  --elegant-white: #ffffff;
+  --elegant-accent: #111111;
+  --text-primary: var(--elegant-black);
+  --text-secondary: var(--elegant-gray);
+  --text-light: var(--elegant-gray-light);
+  --background-primary: var(--elegant-white);
+  --border-light: rgba(0, 0, 0, 0.1);
+  --elegant-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 600;
+  --font-weight-black: 700;
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-wide: 0.05em;
+  
+  /* Typography */
+  --font-primary: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: Georgia, Times, serif;
+  --font-mono: 'SF Mono', Consolas, Monaco, monospace;
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
+}
+
+/* Global font styles for the page */
+body, html {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-tight);
+}
+
 .hero {
   min-height: 75vh;
   display: flex;
@@ -24,9 +72,13 @@
 }
 
 .highlight {
-  color: var(--color-gray-900);
+  color: var(--elegant-black);
   position: relative;
   display: inline-block;
+  font-weight: var(--font-weight-black);
+  letter-spacing: var(--letter-spacing-tight);
+  font-family: var(--font-primary);
+  font-size: 2.8rem;
 }
 
 .highlight::after {
@@ -35,15 +87,19 @@
   bottom: -4px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--color-gray-900);
+  height: 1px;
+  background-color: var(--elegant-black);
 }
 
 .subtitle {
-  font-size: var(--font-size-h3);
-  color: var(--color-gray-600);
+  font-size: 1.5rem;
+  color: var(--elegant-gray);
   margin-top: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-tight);
+  font-family: var(--font-primary);
+  line-height: var(--line-height-relaxed);
 }
 
 .heroBottomContent {
@@ -95,7 +151,7 @@
 }
 
 .profileFrame:hover img {
-  transform: scale(1.2);
+  transform: scale(1.1);
   filter: brightness(1.1);
 }
 
@@ -126,30 +182,35 @@
 }
 
 .skills {
-  padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-xxl);
-  margin-top: 0;
+  margin-top: -3rem;
   text-align: center;
   background: transparent;
   border-top: none;
   border-bottom: none;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
 }
 
 /* Skills title styling */
 .skillsTitle {
-  text-align: center;
+  text-align: left;
   position: relative;
   display: inline-block;
-  color: #1a202c;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  color: var(--elegant-black);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
   cursor: pointer;
   transition: all 0.3s ease;
-  padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 4px;
+  padding: var(--spacing-xs) 0;
+  padding-left: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: var(--font-primary);
 }
 
 .skillsTitle::before {
@@ -197,11 +258,12 @@
   flex-direction: column;
   gap: var(--spacing-md);
   margin-top: calc(var(--spacing-lg) + 10px);
-  max-width: none;
   width: 100%;
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0 var(--spacing-md);
+  max-width: 1200px;
+
+  margin-right: auto;
+  padding: 0 var(--spacing-xl);
+  box-sizing: border-box;
 }
 
 .skillCategory {
@@ -212,7 +274,8 @@
   border-radius: 0;
   box-shadow: none;
   border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .skillCategory:last-child {
@@ -221,13 +284,15 @@
 
 .skillCategory h3 {
   margin-bottom: var(--spacing-md);
-  color: #1a202c;
-  font-size: var(--font-size-h4);
+  color: var(--elegant-black);
   position: relative;
   display: inline-block;
-  font-weight: 600;
+  font-weight: var(--font-weight-medium);
   padding-bottom: var(--spacing-xs);
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
 }
 
 .skillCategory h3::after {
@@ -249,20 +314,20 @@
 }
 
 .skillTag {
-  background-color: #f8fafc;
+  background-color: transparent;
   padding: var(--spacing-xs) var(--spacing-md);
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 0.85rem;
-  color: #1a202c;
+  color: var(--elegant-gray-dark);
   transition: all 0.3s ease;
   box-shadow: none;
-  font-weight: 500;
+  font-weight: var(--font-weight-normal);
   border: none;
   position: relative;
   overflow: hidden;
-  padding-left: var(--spacing-md);
   letter-spacing: 0.2px;
-  border-left: 3px solid;
+  border-left: 1px solid;
+  font-family: var(--font-primary);
 }
 
 .level-advanced {
@@ -361,17 +426,25 @@
   }
   
   .certificateBadge:hover span {
-    transform: scale(1.2);
+    transform: scale(1.1);
     transform-origin: center;
   }
   
   .skills {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .skillGrid {
+    width: 100%;
+    padding: 0;
   }
   
   .skillCategory {
     padding: var(--spacing-md) 0;
     margin-bottom: var(--spacing-sm);
+    width: 100%;
   }
   
   .skillCategory h3 {
@@ -417,6 +490,15 @@
   .profileFrame {
     width: 280px;
   }
+  
+  .skills {
+    padding: 0;
+  }
+  
+  .skillGrid {
+    width: 100%;
+    max-width: 100%;
+  }
 }
 
 /* Added new certificates section styling */
@@ -426,10 +508,14 @@
 
 .certificatesTitle {
   margin-bottom: var(--spacing-md);
-  color: var(--color-gray-800);
-  font-size: var(--font-size-h4);
+  color: var(--elegant-black);
   text-align: left;
   margin-top: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
 }
 
 .certificatesContainer {
@@ -471,12 +557,12 @@
 
 .certificateBadge:hover img {
   border-color: var(--color-gray-900);
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
 .certificateBadge span {
   font-size: 0.8rem;
-  color: var(--color-gray-700);
+  color: var(--elegant-gray);
   max-width: 100%;
   text-align: left;
   overflow-wrap: break-word;
@@ -485,10 +571,55 @@
   white-space: normal;
   line-height: 1.2;
   transition: all 0.3s ease;
+  letter-spacing: var(--letter-spacing-tight);
+  font-family: var(--font-primary);
 }
 
 .certificateBadge:hover span {
   color: var(--color-gray-900);
-  transform: scale(1.2);
+  transform: scale(1.1);
   transform-origin: left center;
+}
+
+/* Media query for larger screens */
+@media (min-width: 1400px) {
+  .highlight {
+    font-size: 3.2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.8rem;
+  }
+  
+  .skillsTitle {
+    font-size: 1.8rem;
+  }
+  
+  .skillCategory h3 {
+    font-size: 1.1rem;
+  }
+  
+  .skillTag {
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .highlight {
+    font-size: 2.4rem;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+    line-height: 1.4;
+  }
+  
+  .skillsTitle {
+    text-align: left;
+    padding-left: var(--spacing-md);
+    margin-left: 0;
+    font-size: 1.3rem;
+    line-height: var(--line-height-tight);
+  }
 } 
