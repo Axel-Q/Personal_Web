@@ -43,7 +43,9 @@ const Sidebar = ({ isExpanded, onToggle }: SidebarProps) => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className={styles.logoIcon}
+            className={`${styles.logoIcon} ${styles.clickable}`}
+            onClick={onToggle}
+            title="Expand Sidebar"
           >
             A
           </motion.div>

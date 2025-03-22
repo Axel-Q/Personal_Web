@@ -71,14 +71,28 @@ h1, h2, h3, h4, h5, h6 {
   padding: var(--spacing-xl) 0 var(--spacing-md) var(--spacing-xl);
 }
 
+.introHeading {
+  position: relative;
+  margin-bottom: var(--spacing-md);
+  line-height: 1.1;
+  transition: all 0.3s ease;
+}
+
+.introHeading:hover .highlight {
+  transform: translateY(-1px);
+}
+
 .highlight {
   color: var(--elegant-black);
   position: relative;
   display: inline-block;
   font-weight: var(--font-weight-black);
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: -0.02em;
   font-family: var(--font-primary);
   font-size: 2.8rem;
+  line-height: 1.1;
+  margin-left: 0.2rem;
+  transition: all 0.3s ease;
 }
 
 .highlight::after {
@@ -89,6 +103,12 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 1px;
   background-color: var(--elegant-black);
+  transition: all 0.3s ease;
+}
+
+.introHeading:hover .highlight::after {
+  height: 2px;
+  bottom: -5px;
 }
 
 .subtitle {
@@ -97,9 +117,40 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: var(--spacing-md);
   margin-bottom: var(--spacing-lg);
   font-weight: var(--font-weight-light);
-  letter-spacing: var(--letter-spacing-tight);
+  letter-spacing: 0.02em;
   font-family: var(--font-primary);
-  line-height: var(--line-height-relaxed);
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  transition: all 0.4s ease;
+}
+
+.subtitle:hover {
+  color: var(--elegant-gray-dark);
+}
+
+.titleIcon {
+  font-size: 1.2rem;
+  color: var(--elegant-gray-dark);
+  margin-left: 0.5rem;
+  margin-right: 0.2rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  vertical-align: middle;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+.subtitle:hover .titleIcon {
+  transform: translateY(-2px);
+  color: var(--elegant-black);
+}
+
+.subtitleDivider {
+  color: var(--elegant-gray-light);
+  margin: 0 0.8rem;
+  font-weight: 300;
+  position: relative;
+  top: -1px;
 }
 
 .heroBottomContent {
@@ -127,6 +178,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   flex-shrink: 0;
+  z-index: 10;
 }
 
 .profileFrame {
@@ -148,6 +200,7 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
+  border-radius: 25px;
 }
 
 .profileFrame:hover img {
@@ -158,6 +211,53 @@ h1, h2, h3, h4, h5, h6 {
 .profileFrame:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
+}
+
+.profileDialog {
+  position: absolute;
+  left: -220px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--elegant-white);
+  border: 1px solid var(--elegant-light);
+  padding: 12px 20px;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: max-content;
+  max-width: 200px;
+  text-align: center;
+  z-index: 100;
+}
+
+.profileDialog p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--elegant-gray-dark);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+.profileDialog::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -8px;
+  transform: translateY(-50%) rotate(45deg);
+  width: 14px;
+  height: 14px;
+  background-color: var(--elegant-white);
+  border-right: 1px solid var(--elegant-light);
+  border-top: 1px solid var(--elegant-light);
+}
+
+.profileContainer:hover .profileDialog {
+  opacity: 1;
+  transform: translateY(-50%);
+  pointer-events: auto;
 }
 
 .profileOverlay {
@@ -522,6 +622,43 @@ h1, h2, h3, h4, h5, h6 {
   .level-beginner:hover {
     border-left-width: 2px;
   }
+  
+  .introHeading {
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .titleIcon {
+    font-size: 0.9rem;
+  }
+  
+  .subtitleDivider {
+    margin: 0 0.5rem;
+  }
+  
+  .profileDialog {
+    position: absolute;
+    left: auto;
+    right: 105%;
+    top: 30%;
+    max-width: 130px;
+    padding: 8px 12px;
+  }
+  
+  .profileDialog::before {
+    right: -8px;
+    top: 30%;
+  }
+  
+  .profileDialog p {
+    font-size: 0.85rem;
+  }
 }
 
 /* Additional responsiveness for sidebar collapse */
@@ -648,6 +785,10 @@ h1, h2, h3, h4, h5, h6 {
   
   .skillTag {
     font-size: 0.9rem;
+  }
+  
+  .titleIcon {
+    font-size: 1.2rem;
   }
 }
 

@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
-import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
+import { fadeInUp, staggerContainer, scaleIn } from '@/utils/animations';
+import { FaEthereum } from 'react-icons/fa';
+import { RiStackFill } from 'react-icons/ri';
 import styles from './Home.module.css';
 
 const Home: React.FC = () => {
@@ -95,6 +97,7 @@ const Home: React.FC = () => {
               initial="initial"
               animate="animate"
               transition={{ delay: 0.2 }}
+              className={styles.introHeading}
             >
               Hi, I'm <span className={styles.highlight}>Axel Qian</span>
             </motion.h1>
@@ -105,7 +108,7 @@ const Home: React.FC = () => {
               animate="animate"
               transition={{ delay: 0.4 }}
             >
-              Full Stack Developer specializing in modern web applications
+              Full Stack Developer <RiStackFill className={styles.titleIcon} /> <span className={styles.subtitleDivider}>|</span> Web3 Enthusiast <FaEthereum className={styles.titleIcon} />
             </motion.p>
           </div>
           
@@ -151,6 +154,9 @@ const Home: React.FC = () => {
           animate="animate"
           transition={{ delay: 0.3 }}
         >
+          <div className={styles.profileDialog}>
+            <p>Hi, thank you for visiting my website.</p>
+          </div>
           <div className={styles.profileFrame}>
             <img src="../public/profile-photo.jpg" alt="Axel Qian" />
             <div className={styles.profileOverlay}></div>

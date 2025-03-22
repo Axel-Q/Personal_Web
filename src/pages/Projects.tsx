@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
-import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
+import { fadeInUp, staggerContainer, scaleIn } from '@/utils/animations';
 import styles from './Projects.module.css';
 
 const Projects: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
-import { fadeInUp, staggerContainer } from '../utils/animations';
+import { fadeInUp, slideIn, staggerContainer } from '@/utils/animations';
 import styles from './Resume.module.css';
 
 const Resume: React.FC = () => {

@@ -6,7 +6,7 @@
   width: var(--sidebar-width);
   background-color: var(--color-background);
   border-right: 1px solid var(--color-gray-200);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-md);
   z-index: 100;
   height: 100vh;
   overflow: hidden;
@@ -15,18 +15,18 @@
 
 .collapsed {
   width: var(--sidebar-width-collapsed);
-  padding: var(--spacing-lg) var(--spacing-sm);
+  padding: var(--spacing-md) var(--spacing-xs);
 }
 
 .logo {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
   overflow: hidden;
   white-space: nowrap;
 }
 
 .logoIcon {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   background-color: var(--color-gray-900);
   color: white;
   border-radius: 50%;
@@ -34,7 +34,18 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.1);
+  background-color: var(--elegant-black);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .navItems {
@@ -49,8 +60,8 @@
 .link, .toggleButton {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: var(--spacing-sm) var(--spacing-md);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
   color: var(--color-gray-700);
   text-decoration: none;
   transition: all 0.2s ease;
@@ -101,9 +112,14 @@
 @media (max-width: 768px) {
   .sidebar {
     width: var(--sidebar-width-collapsed);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   }
   
   .toggleButtonContainer {
     display: none;
+  }
+  
+  .iconOnly {
+    padding: var(--spacing-xs);
   }
 } 
