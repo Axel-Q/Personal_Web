@@ -158,7 +158,7 @@ const Home: React.FC = () => {
             <p>Hi, thank you for visiting my website.</p>
           </div>
           <div className={styles.profileFrame}>
-            <img src="/profile-photo.jpg" alt="Axel Qian" />
+            <img src="/profile-photo.JPG" alt="Axel Qian" />
             <div className={styles.profileOverlay}></div>
           </div>
         </motion.div>
