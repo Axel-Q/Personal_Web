@@ -242,14 +242,15 @@ h1, h2, h3, h4, h5, h6 {
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 120px;
-  height: 3px;
-  background: linear-gradient(90deg, #805ad5 0%, #3182ce 100%);
+  width: 60px;
+  height: 1px;
+  background: var(--elegant-black);
   transition: width 0.3s ease;
 }
 
 .skillsTitle:hover::after {
-  width: 140px;
+  width: 80px;
+  opacity: 0.7;
 }
 
 /* Skills grid and category containers */
@@ -257,10 +258,9 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
-  margin-top: calc(var(--spacing-lg) + 10px);
+
   width: 100%;
   max-width: 1200px;
-
   margin-right: auto;
   padding: 0 var(--spacing-xl);
   box-sizing: border-box;
@@ -300,9 +300,9 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 40px;
-  height: 2px;
-  background: linear-gradient(90deg, #805ad5 0%, #3182ce 100%);
+  width: 45px;
+  height: 1px;
+  background: var(--elegant-black);
 }
 
 /* Skill list and tag styling */
@@ -331,21 +331,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .level-advanced {
-  border-left-color: #805ad5; /* Elegant purple */
+  border-left-color: var(--elegant-black);
 }
 
 .level-intermediate {
-  border-left-color: #3182ce; /* Rich blue */
+  border-left-color: var(--elegant-gray-dark);
 }
 
 .level-beginner {
-  border-left-color: #e53e3e; /* Deep red */
+  border-left-color: var(--elegant-gray-light);
 }
 
+/* Enhanced hover effect for skill tags */
 .skillTag:hover {
   transform: translateY(-2px);
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.03);
+  color: var(--elegant-black);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* Special hover effects based on skill level */
+.level-advanced:hover {
+  border-left-width: 2px;
+  border-left-color: var(--elegant-black);
+}
+
+.level-intermediate:hover {
+  border-left-width: 2px;
+  border-left-color: var(--elegant-gray-dark);
+}
+
+.level-beginner:hover {
+  border-left-width: 2px;
+  border-left-color: var(--elegant-gray-light);
 }
 
 /* Responsive design */
@@ -455,13 +473,16 @@ h1, h2, h3, h4, h5, h6 {
   }
   
   .skillCategory h3::after {
-    content: '';
-    position: absolute;
     bottom: -4px;
     left: 50%;
     transform: translateX(-50%);
-    width: 30px;
-    height: 2px;
+    width: 45px;
+    height: 1px;
+    background: var(--elegant-black);
+  }
+  
+  .skillCategory:first-child h3::after {
+    width: 45px;
   }
   
   .skillList {
@@ -473,6 +494,32 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.8rem;
     padding: var(--spacing-xxs) var(--spacing-sm);
     padding-left: var(--spacing-sm);
+    border-left-width: 1px;
+  }
+  
+  .skillsTitle {
+    text-align: center;
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 1.3rem;
+    line-height: var(--line-height-tight);
+  }
+  
+  .skillsTitle::after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+  }
+  
+  /* Adjust hover effects for mobile */
+  .skillTag:hover {
+    transform: translateY(-1px);
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+  
+  .level-advanced:hover,
+  .level-intermediate:hover,
+  .level-beginner:hover {
     border-left-width: 2px;
   }
 }
@@ -613,13 +660,5 @@ h1, h2, h3, h4, h5, h6 {
   .subtitle {
     font-size: 1.3rem;
     line-height: 1.4;
-  }
-  
-  .skillsTitle {
-    text-align: left;
-    padding-left: var(--spacing-md);
-    margin-left: 0;
-    font-size: 1.3rem;
-    line-height: var(--line-height-tight);
   }
 } 
