@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
-import { fadeInUp, staggerContainer, scaleIn } from '@/utils/animations';
+import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 import { FaEthereum } from 'react-icons/fa';
 import { RiStackFill } from 'react-icons/ri';
 import styles from './Home.module.css';
