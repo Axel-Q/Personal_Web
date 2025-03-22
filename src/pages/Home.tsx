@@ -58,11 +58,11 @@ const Home: React.FC = () => {
   const certificates = [
     { 
       name: 'AWS Solution Architect Associate Certified', 
-      image: '../../public/saa.jpg'
+      image: '/saa.jpg'
     },
     { 
       name: 'Google Advanced Data Analytics Certificate', 
-      image: '../../public/google.jpg'
+      image: '/google.jpg'
     }
   ];
 
@@ -158,7 +158,7 @@ const Home: React.FC = () => {
             <p>Hi, thank you for visiting my website.</p>
           </div>
           <div className={styles.profileFrame}>
-            <img src="../public/profile-photo.jpg" alt="Axel Qian" />
+            <img src="/profile-photo.jpg" alt="Axel Qian" />
             <div className={styles.profileOverlay}></div>
           </div>
         </motion.div>
