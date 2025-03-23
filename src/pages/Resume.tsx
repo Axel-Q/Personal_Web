@@ -18,7 +18,7 @@ const Resume: React.FC = () => {
         'Cloud Networking',
         'Cloud Computing',
         'Distributed Systems',
-        'Object-Oriented Design (OOD)',
+        'Object-Oriented Design ',
         'Web and Mobile Development'
       ]
     },
@@ -100,12 +100,14 @@ const Resume: React.FC = () => {
                         
                         {edu.courses && (
                           <div className={styles.coursesSection}>
-                            <span className={styles.courseLabel}>Coursework:</span>
-                            <ol className={styles.coursesList}>
+                            <span className={styles.courseLabel}>Relevant Coursework</span>
+                            <div className={styles.coursesList}>
                               {edu.courses.map((course, i) => (
-                                <li key={i} className={styles.courseItem}>{course}</li>
+                                <span key={i} className={styles.courseItem}>
+                                  {course}
+                                </span>
                               ))}
-                            </ol>
+                            </div>
                           </div>
                         )}
                       </div>

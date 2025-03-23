@@ -190,23 +190,37 @@
   font-weight: 600;
   color: var(--elegant-black);
   display: block;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
 }
 
 .coursesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
   margin: 0;
-  padding-left: 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 0.5rem 1.5rem;
+  padding: 0;
 }
 
 .courseItem {
-  font-size: 0.9rem;
-  line-height: 1.5;
+  font-size: 0.8rem;
   color: var(--elegant-gray-dark);
-  margin-bottom: 0.4rem;
-  padding-left: 0.2rem;
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.courseItem:not(:last-child)::after {
+  content: '•';
+  display: inline-block;
+  margin-left: 0.6rem;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 0.7rem;
+  position: relative;
+  top: -1px;
 }
 
 .description {
@@ -229,10 +243,6 @@
   
   .sectionTitle {
     margin-top: 1rem;
-  }
-  
-  .coursesList {
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   }
 }
 
@@ -271,8 +281,12 @@
   }
   
   .coursesList {
-    grid-template-columns: 1fr;
-    padding-left: 1.2rem;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  
+  .courseItem:not(:last-child)::after {
+    display: none;
   }
   
   .location, .period, .compactLocation {
