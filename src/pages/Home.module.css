@@ -209,8 +209,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .profileFrame:hover {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
+  /* Shadow removed to keep clean look with white profile photo */
 }
 
 .profileDialog {
@@ -266,19 +266,14 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.2) 100%
-  );
+  background: transparent;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .profileFrame:hover .profileOverlay {
-  opacity: 1;
+  opacity: 0;
 }
 
 .skills {
