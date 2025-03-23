@@ -11,6 +11,13 @@
   --color-gray-700: #616161;
   --color-gray-800: #424242;
   --color-gray-900: #212121;
+  
+  /* Resume specific variables */
+  --elegant-black: #252525;
+  --elegant-gray: #6e6e6e;
+  --elegant-gray-dark: #4a4a4a;
+  --elegant-gray-light: #a8a8a8;
+  --elegant-accent: #3e4555;
 
   /* Typography */
   --font-primary: 'Space Grotesk', sans-serif;

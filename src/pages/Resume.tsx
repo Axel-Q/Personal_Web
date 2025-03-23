@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { fadeInUp, staggerContainer } from '../utils/animations';
 import styles from './Resume.module.css';
+import '../styles/theme.css';
 
 const Resume: React.FC = () => {
   const education = [
