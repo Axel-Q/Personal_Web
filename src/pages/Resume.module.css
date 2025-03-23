@@ -1,30 +1,281 @@
 .container {
   padding: var(--spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.timeline {
-  margin-top: var(--spacing-xl);
+.title {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--elegant-black);
+  margin-bottom: 3rem;
+  letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
 }
 
-.timelineItem {
-  padding: var(--spacing-lg);
-  border-left: 2px solid var(--color-gray-300);
-  margin-left: 20px;
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--elegant-black);
+}
+
+.resumeLayout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 3.5rem;
+}
+
+.column {
   position: relative;
 }
 
-.timelineItem::before {
+.sectionTitle {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--elegant-black);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.sectionContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.resumeCard {
+  background: white;
+  border-radius: 10px;
+  padding: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.resumeCard::before {
   content: '';
   position: absolute;
-  left: -8px;
-  top: 24px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: var(--color-gray-900);
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--elegant-black), rgba(0, 0, 0, 0.1));
+  opacity: 0.4;
+}
+
+.compactCard {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.compactContent {
+  padding: 1.5rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.compactLocation {
+  font-size: 0.85rem;
+  color: var(--elegant-gray);
+  font-style: italic;
+}
+
+.cardHeader {
+  padding: 1.5rem 1.8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.cardContent {
+  padding: 1.5rem 1.8rem;
+}
+
+.degreeRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.degreeGpaContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.primaryText {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--elegant-black);
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+.secondaryText {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--elegant-gray-dark);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.inlineGpa {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--elegant-black);
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.2rem 0.6rem;
+  border-radius: 30px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.location {
+  font-size: 0.85rem;
+  color: var(--elegant-gray);
+  font-style: italic;
 }
 
 .period {
-  color: var(--color-gray-600);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--elegant-black);
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.3rem 0.8rem;
+  border-radius: 30px;
+  letter-spacing: 0.01em;
+}
+
+.infoRow {
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.highlight {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--elegant-black);
+  background-color: rgba(0, 0, 0, 0.04);
+  padding: 0.3rem 0.8rem;
+  border-radius: 30px;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.coursesSection {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+.courseLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--elegant-black);
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.coursesList {
+  margin: 0;
+  padding-left: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 0.5rem 1.5rem;
+}
+
+.courseItem {
   font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--elegant-gray-dark);
+  margin-bottom: 0.4rem;
+  padding-left: 0.2rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--elegant-gray-dark);
+  margin: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .resumeLayout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .column + .column {
+    margin-top: 1rem;
+  }
+  
+  .sectionTitle {
+    margin-top: 1rem;
+  }
+  
+  .coursesList {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .cardHeader, .cardContent, .compactContent {
+    padding: 1.2rem 1.5rem;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .degreeRow {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .degreeGpaContainer {
+    gap: 0.5rem;
+  }
+  
+  .compactContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .coursesList {
+    grid-template-columns: 1fr;
+    padding-left: 1.2rem;
+  }
+  
+  .location, .period, .compactLocation {
+    margin-top: 0;
+  }
 } 
