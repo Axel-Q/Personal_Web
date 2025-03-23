@@ -5,6 +5,21 @@ import { fadeInUp, staggerContainer } from '../utils/animations';
 import styles from './Resume.module.css';
 import '../styles/theme.css';
 
+interface Experience {
+  title?: string;
+  company: string;
+  period: string;
+  location?: string;
+  description?: string;
+  tags?: string[];
+  positions?: { 
+    title: string; 
+    description: string;
+    location?: string;
+    tags?: string[];
+  }[];
+}
+
 const Resume: React.FC = () => {
   const education = [
     {
@@ -32,17 +47,39 @@ const Resume: React.FC = () => {
 
   const experiences = [
     {
-      title: 'Senior Developer',
-      company: 'Tech Corp',
-      period: '2020 - Present',
-      description: 'Led development of multiple web applications using React and TypeScript.'
+      title: 'Cloud Upgrade Specialist',
+      company: 'SAP',
+      period: 'Jan 2024 - Present',
+      location: 'Vancouver, Canada',
+      description: 'Led development of multiple web applications using React and TypeScript.',
+      tags: ['Internship']
     },
     {
-      title: 'Web Developer',
-      company: 'Digital Agency',
-      period: '2018 - 2020',
-      description: 'Developed responsive websites and e-commerce solutions for clients.'
-    }
+      company: 'Northeastern University',
+      period: 'Jan 2024 - Present',
+      positions: [
+        { 
+          title: 'Teaching Assistant', 
+          description: 'Provided academic support and guidance to computer science students.',
+          location: 'Vancouver, Canada',
+          tags: ['Part-time']
+        },
+        { 
+          title: 'Career Peer Ambassador', 
+          description: 'Assisted students with resume reviews and career development resources.',
+          location: 'Vancouver, Canada',
+          tags: ['Part-time']
+        }
+      ]
+    },
+    {
+      title: 'Cloud Upgrade Specialist',
+      company: 'SAP',
+      period: 'Jan 2024 - Present',
+      location: 'Vancouver, Canada',
+      description: 'Led development of multiple web applications using React and TypeScript.',
+      tags: ['Internship']
+    },
   ];
 
   return (
@@ -86,7 +123,7 @@ const Resume: React.FC = () => {
                     <>
                       <div className={styles.cardHeader}>
                         <h3 className={styles.primaryText}>{edu.university}</h3>
-                        <span className={styles.period}>{edu.period}</span>
+                        <span className={styles.location}>{edu.location}</span>
                       </div>
                       
                       <div className={styles.cardContent}>
@@ -95,7 +132,7 @@ const Resume: React.FC = () => {
                             <h4 className={styles.secondaryText}>{edu.degree}</h4>
                             {edu.gpa && <span className={styles.inlineGpa}>{edu.gpa}</span>}
                           </div>
-                          <span className={styles.location}>{edu.location}</span>
+                          <span className={styles.period}>{edu.period}</span>
                         </div>
                         
                         {edu.courses && (
@@ -139,14 +176,51 @@ const Resume: React.FC = () => {
                 >
                   <div className={styles.cardHeader}>
                     <h3 className={styles.primaryText}>{exp.company}</h3>
-                    <span className={styles.period}>{exp.period}</span>
+                    <span className={styles.location}>{exp.location || exp.positions?.[0]?.location || ''}</span>
                   </div>
                   
                   <div className={styles.cardContent}>
-                    <h4 className={styles.secondaryText}>{exp.title}</h4>
-                    <p className={styles.description}>
-                      {exp.description}
-                    </p>
+                    {exp.title ? (
+                      // Regular single job title
+                      <div>
+                        <div className={styles.titleRow}>
+                          <div className={styles.titleTagGroup}>
+                            <h4 className={styles.secondaryText}>{exp.title}</h4>
+                            {exp.tags && exp.tags.map((tag, i) => (
+                              <span key={i} className={styles.expTag}>{tag}</span>
+                            ))}
+                          </div>
+                          <span className={styles.period}>{exp.period}</span>
+                        </div>
+                        {exp.description && (
+                          <p className={styles.description}>
+                            {exp.description}
+                          </p>
+                        )}
+                      </div>
+                    ) : (
+                      // Multiple positions with descriptions
+                      <div>
+                        {exp.positions && (
+                          <ul className={styles.roleList}>
+                            {exp.positions.map((position, i) => (
+                              <li key={i} className={styles.roleItem}>
+                                <div className={styles.positionHeader}>
+                                  <div className={styles.titleTagGroup}>
+                                    <h4 className={styles.roleItemTitle}>{position.title}</h4>
+                                    {position.tags && position.tags.map((tag, tagIndex) => (
+                                      <span key={tagIndex} className={styles.expTag}>{tag}</span>
+                                    ))}
+                                  </div>
+                                  <span className={styles.period}>{exp.period}</span>
+                                </div>
+                                <span className={styles.roleItemDescription}>{position.description}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}

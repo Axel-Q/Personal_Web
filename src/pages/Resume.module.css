@@ -174,16 +174,21 @@
   font-size: 0.85rem;
   color: var(--elegant-gray, #6e6e6e);
   font-style: italic;
+  white-space: nowrap;
+  background-color: transparent;
+  padding: 0.3rem 0;
+  letter-spacing: 0.01em;
+  font-weight: 500;
 }
 
 .period {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--elegant-black, #252525);
-  background-color: rgba(0, 0, 0, 0.04);
-  padding: 0.3rem 0.8rem;
-  border-radius: 30px;
+  background-color: transparent;
+  padding: 0.3rem 0;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
 
 .infoRow {
@@ -334,6 +339,65 @@
   .resumeCard:hover .compactContent {
     transform: scale(1.005);
   }
+  
+  .tagContainer {
+    margin-bottom: 0.6rem;
+    margin-top: 0.1rem;
+  }
+  
+  .expTag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+  }
+  
+  .titleRow {
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .tagContainer {
+    min-height: 1.4rem;
+  }
+  
+  .expTag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    height: 1.3rem;
+  }
+  
+  .roleList {
+    padding-top: 1rem;
+    margin-top: 0.3rem;
+  }
+  
+  .roleItemTitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .roleItem {
+    margin-bottom: 1.8rem;
+  }
+  
+  .roleItemDescription {
+    font-size: 0.85rem;
+  }
+  
+  .titleRow {
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .positionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .titleTagGroup {
+    gap: 0.5rem;
+  }
 }
 
 .resumeCard:hover .cardHeader,
@@ -341,4 +405,131 @@
 .resumeCard:hover .compactContent {
   transform: scale(1.01);
   transform-origin: left;
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.tagContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 1.6rem; /* Ensures space is reserved even if empty */
+}
+
+.expTag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--elegant-accent, #3e4555);
+  background-color: rgba(62, 69, 85, 0.08);
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  height: 1.4rem;
+  margin-left: 0.1rem;
+}
+
+.expTag:hover {
+  transform: translateY(-1px);
+  background-color: rgba(62, 69, 85, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.positionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.positionDetails {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.positionLocation {
+  font-size: 0.85rem;
+  color: var(--elegant-gray, #6e6e6e);
+  font-style: italic;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .positionHeader {
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: 0.4rem;
+  }
+  
+  .positionDetails {
+    margin-top: 0.1rem;
+  }
+  
+  .positionLocation {
+    font-size: 0.8rem;
+  }
+}
+
+.roleList {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 1.2rem;
+}
+
+.roleItem {
+  position: relative;
+  padding-left: 0;
+  margin-bottom: 2rem;
+  color: var(--elegant-gray-dark, #4a4a4a);
+}
+
+.roleItem:last-child {
+  margin-bottom: 0;
+}
+
+.roleItemTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--elegant-black, #252525);
+  margin: 0;
+  line-height: 1.4;
+  margin-bottom: 0.6rem;
+  display: block;
+  letter-spacing: -0.01em;
+}
+
+.roleItemDescription {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--elegant-gray-dark, #4a4a4a);
+  position: relative;
+  display: block;
+  padding-left: 0;
+}
+
+.roleItemDescription::before {
+  display: none;
+}
+
+.titleTagGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
 } 
