@@ -76,7 +76,6 @@ const Resume: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
                 >
                   {edu.isCompact ? (
                     <div className={styles.compactContent}>
@@ -137,7 +136,6 @@ const Resume: React.FC = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
-                  whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
                 >
                   <div className={styles.cardHeader}>
                     <h3 className={styles.primaryText}>{exp.company}</h3>
