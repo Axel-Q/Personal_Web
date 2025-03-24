@@ -1,26 +1,32 @@
 .container {
   padding: var(--spacing-xl, 2rem);
+  padding-left: 4rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .title {
   font-size: 2.8rem;
   font-weight: 300;
   color: var(--elegant-black, #252525);
-  margin-bottom: 3rem;
   letter-spacing: -0.02em;
-  position: relative;
-  display: inline-block;
+  position: absolute;
+  left: -1.5rem;
+  top: 4rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-bottom: 0;
+  text-orientation: mixed;
 }
 
 .title::after {
   content: '';
   position: absolute;
-  bottom: -12px;
-  left: 0;
-  width: 40px;
-  height: 2px;
+  top: 0;
+  right: -12px;
+  width: 2px;
+  height: 40px;
   background-color: var(--elegant-black, #252525);
 }
 
@@ -28,6 +34,7 @@
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 3.5rem;
+  margin-left: 0.5rem;
 }
 
 .column {
@@ -263,9 +270,14 @@
 
 /* Responsive styles */
 @media (max-width: 992px) {
+  .container {
+    padding-left: var(--spacing-xl, 2rem);
+  }
+  
   .resumeLayout {
     grid-template-columns: 1fr;
     gap: 3rem;
+    margin-left: 0;
   }
   
   .column + .column {
@@ -275,6 +287,26 @@
   .sectionTitle {
     margin-top: 1rem;
   }
+  
+  .title {
+    position: relative;
+    left: 0;
+    top: 0;
+    writing-mode: horizontal-tb;
+    transform: none;
+    margin-bottom: 2rem;
+    font-size: 2.4rem;
+    display: block;
+  }
+  
+  .title::after {
+    bottom: -12px;
+    left: 0;
+    top: auto;
+    right: auto;
+    width: 40px;
+    height: 2px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -283,8 +315,22 @@
   }
   
   .title {
-    font-size: 2.2rem;
+    position: relative;
+    left: 0;
+    top: 0;
+    writing-mode: horizontal-tb;
+    transform: none;
     margin-bottom: 2rem;
+    font-size: 2.2rem;
+  }
+  
+  .title::after {
+    bottom: -12px;
+    left: 0;
+    top: auto;
+    right: auto;
+    width: 40px;
+    height: 2px;
   }
   
   .cardHeader, .cardContent, .compactContent {

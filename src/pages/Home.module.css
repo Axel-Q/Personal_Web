@@ -205,7 +205,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .profileFrame:hover img {
   transform: scale(1.1);
-  filter: brightness(1.1);
 }
 
 .profileFrame:hover {

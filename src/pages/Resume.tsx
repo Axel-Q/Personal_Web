@@ -25,7 +25,7 @@ const Resume: React.FC = () => {
     {
       degree: 'MSc in Computer Science',
       university: 'Northeastern University',
-      location: 'Vancouver, Canada',
+      location: 'Vancouver campus',
       period: '2023 - 2026',
       gpa: 'GPA: 4.0/4.0',
       courses: [
@@ -40,17 +40,17 @@ const Resume: React.FC = () => {
     },
     {
       university: 'University of Amsterdam',
-      location: 'Amsterdam, Netherlands',
+      location: 'Amsterdam',
       isCompact: true
     }
   ];
 
   const experiences = [
     {
-      title: 'Cloud Upgrade Specialist',
+      title: 'Cloud Upgrade Architect',
       company: 'SAP',
       period: 'Jan 2024 - Present',
-      location: 'Vancouver, Canada',
+      location: 'Vancouver',
       description: 'Led development of multiple web applications using React and TypeScript.',
       tags: ['Internship']
     },
@@ -61,7 +61,7 @@ const Resume: React.FC = () => {
         { 
           title: 'Teaching Assistant', 
           description: 'Provided academic support and guidance to computer science students.',
-          location: 'Vancouver, Canada',
+          location: 'Vancouver',
           tags: ['Part-time']
         },
         { 
@@ -73,12 +73,20 @@ const Resume: React.FC = () => {
       ]
     },
     {
-      title: 'Cloud Upgrade Specialist',
-      company: 'SAP',
-      period: 'Jan 2024 - Present',
-      location: 'Vancouver, Canada',
+      title: 'Full Stack Developer',
+      company: 'Phlips',
+      period: 'May 2024 - Aug 2024',
+      location: 'Soochow',
       description: 'Led development of multiple web applications using React and TypeScript.',
       tags: ['Internship']
+    },
+    {
+      title: 'HR professional',
+      company: 'Owens Corning',
+      period: 'Oct 2021 - Aug 2023',
+      location: 'Hangzhou',
+      description: 'Led development of multiple web applications using React and TypeScript.',
+      tags: ['Full-time']
     },
   ];
 
