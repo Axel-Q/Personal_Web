@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { fadeInUp, staggerContainer } from '../utils/animations';
@@ -6,21 +6,26 @@ import styles from './Resume.module.css';
 import '../styles/theme.css';
 
 interface Experience {
-  title?: string;
+  title: string;
   company: string;
+  companyDetails?: string;
   period: string;
-  location?: string;
-  description?: string;
-  tags?: string[];
-  positions?: { 
-    title: string; 
-    description: string;
-    location?: string;
-    tags?: string[];
-  }[];
+  location: string;
+  bullets: string[];
+  tags: string[];
 }
 
 const Resume: React.FC = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContent = () => {
+    // Scroll to bottom of page approach
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
+
   const education = [
     {
       degree: 'MSc in Computer Science',
@@ -47,45 +52,47 @@ const Resume: React.FC = () => {
 
   const experiences = [
     {
-      title: 'Cloud Upgrade Architect',
+      title: 'Cloud Upgrade Engineer Intern',
       company: 'SAP',
-      period: 'Jan 2024 - Present',
+      companyDetails: 'ABAP, SAP HANA, JAVA, HTTP, SSL/TLS, SAML/SSO, SQL',
+      period: 'Jan 2023 - Aug 2023',
       location: 'Vancouver',
-      description: 'Led development of multiple web applications using React and TypeScript.',
+      bullets: [
+        'Conducted root-cause analysis using ABAP/JAVA to resolve system patch bugs, swarming with senior colleagues and cross-functional teams to develop and deliver solutions and subsequent corrective patches, and meet a daily target of 3 cases.',
+        'Enhanced system security and operational stability in SAP environments by resolving critical TLS/transport issues (certificate validation, TLS configuration, RFC/SAPRouter connectivity); implemented robust backup/recovery solutions; and ensured accurate data validation for seamless system migrations.'
+      ],
       tags: ['Internship']
     },
     {
+      title: 'Cloud Computing Course Teaching Assistant',
       company: 'Northeastern University',
-      period: 'Jan 2024 - Present',
-      positions: [
-        { 
-          title: 'Teaching Assistant', 
-          description: 'Provided academic support and guidance to computer science students.',
-          location: 'Vancouver',
-          tags: ['Part-time']
-        },
-        { 
-          title: 'Career Peer Ambassador', 
-          description: 'Assisted students with resume reviews and career development resources.',
-          location: 'Vancouver, Canada',
-          tags: ['Part-time']
-        }
-      ]
+      companyDetails: 'AWS(EC2, RDS, VPC, ECR, ECS, CodePipeline), ML',
+      period: 'Jan 2023 - Present',
+      location: 'Vancouver',
+      bullets: [],
+      tags: ['Part-time']
     },
     {
-      title: 'Full Stack Developer',
-      company: 'Phlips',
+      title: 'Full Stack Development Intern',
+      company: 'Philips Health Technology',
+      companyDetails: 'Python, TypeScript, Redis, Git, TCP',
       period: 'May 2024 - Aug 2024',
-      location: 'Soochow',
-      description: 'Led development of multiple web applications using React and TypeScript.',
+      location: 'Vancouver',
+      bullets: [
+        'Developed a Python-based automated microservice within an Agile Scrum team to synchronize 1 million machine status records daily from Vertica and local Excel files to PostgreSQL. Implemented real-time translation of specific content by integrating the Azure Translation API and utilizing Redis for caching, which reduced API calls and decreased translation response time by 40%. Handled multiple language pairs and optimized costs and performance by using batch translation for large datasets.',
+        'Upgraded from Vue2 to Vue3 with TypeScript for enhanced maintainability and type safety. Implemented Redux for state management, added new UI components, and optimized backend code for faster data fetching and loading via frontend-backend separation. Managed Git repositories, overseeing branching, merging, and conflict resolution for seamless collaboration.',
+        'Optimized network communication by applying knowledge of TCP/IP protocols, including implementing connection pooling to reduce TCP handshake overhead, using keep-alive connections for persistent communication, and optimizing packet sizes to minimize fragmentation. Monitored network latency and throughput using Azure Monitor, resulting in improved network throughput by 30% and enhanced system reliability with proper error handling and retries.'
+      ],
       tags: ['Internship']
     },
     {
-      title: 'HR professional',
+      title: 'HR Professional',
       company: 'Owens Corning',
       period: 'Oct 2021 - Aug 2023',
       location: 'Hangzhou',
-      description: 'Led development of multiple web applications using React and TypeScript.',
+      bullets: [
+        'Served as an effective mediator between Dev&Ops teams'
+      ],
       tags: ['Full-time']
     },
   ];
@@ -98,11 +105,31 @@ const Resume: React.FC = () => {
           initial="initial"
           animate="animate"
           className={styles.title}
+          onClick={scrollToContent}
+          whileHover={{ y: -5 }}
+          whileTap={{ scale: 0.98 }}
+          title="Click to scroll through resume"
+          aria-label="Click to scroll through resume"
         >
           Resume
         </motion.h1>
+        
+        <motion.div 
+          className={styles.scrollArrow}
+          onClick={scrollToContent}
+          whileHover={{ y: -5 }}
+          whileTap={{ scale: 0.95 }}
+          title="Scroll down to view resume"
+          aria-label="Scroll down to view resume"
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        >
+          <span className={styles.scrollArrowPulse}></span>
+          <span className={styles.arrowTooltip}>Click to scroll down</span>
+        </motion.div>
 
-        <div className={styles.resumeLayout}>
+        <div className={styles.resumeLayout} ref={contentRef}>
           {/* Education Section - Left Column */}
           <div className={styles.column}>
             <motion.h2
@@ -183,52 +210,33 @@ const Resume: React.FC = () => {
                   transition={{ delay: 0.1 * index }}
                 >
                   <div className={styles.cardHeader}>
-                    <h3 className={styles.primaryText}>{exp.company}</h3>
-                    <span className={styles.location}>{exp.location || exp.positions?.[0]?.location || ''}</span>
+                    <div className={styles.companySection}>
+                      <h3 className={styles.primaryText}>{exp.company}</h3>
+                      {exp.companyDetails && (
+                        <span className={styles.companyDetails}>{exp.companyDetails}</span>
+                      )}
+                    </div>
+                    <span className={styles.location}>{exp.location}</span>
                   </div>
                   
                   <div className={styles.cardContent}>
-                    {exp.title ? (
-                      // Regular single job title
-                      <div>
-                        <div className={styles.titleRow}>
-                          <div className={styles.titleTagGroup}>
-                            <h4 className={styles.secondaryText}>{exp.title}</h4>
-                            {exp.tags && exp.tags.map((tag, i) => (
-                              <span key={i} className={styles.expTag}>{tag}</span>
-                            ))}
-                          </div>
-                          <span className={styles.period}>{exp.period}</span>
+                    <div className={styles.titleRow}>
+                      <div className={styles.titleTagGroup}>
+                        <h4 className={styles.secondaryText}>{exp.title}</h4>
+                        {exp.tags.map((tag, i) => (
+                          <span key={i} className={styles.expTag}>{tag}</span>
+                        ))}
+                      </div>
+                      <span className={styles.period}>{exp.period}</span>
+                    </div>
+                    <div className={styles.bulletList}>
+                      {exp.bullets.map((bullet, i) => (
+                        <div key={i} className={styles.bulletPoint}>
+                          <span className={styles.bulletMarker}></span>
+                          <span className={styles.bulletText}>{bullet}</span>
                         </div>
-                        {exp.description && (
-                          <p className={styles.description}>
-                            {exp.description}
-                          </p>
-                        )}
-                      </div>
-                    ) : (
-                      // Multiple positions with descriptions
-                      <div>
-                        {exp.positions && (
-                          <ul className={styles.roleList}>
-                            {exp.positions.map((position, i) => (
-                              <li key={i} className={styles.roleItem}>
-                                <div className={styles.positionHeader}>
-                                  <div className={styles.titleTagGroup}>
-                                    <h4 className={styles.roleItemTitle}>{position.title}</h4>
-                                    {position.tags && position.tags.map((tag, tagIndex) => (
-                                      <span key={tagIndex} className={styles.expTag}>{tag}</span>
-                                    ))}
-                                  </div>
-                                  <span className={styles.period}>{exp.period}</span>
-                                </div>
-                                <span className={styles.roleItemDescription}>{position.description}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    )}
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               ))}
