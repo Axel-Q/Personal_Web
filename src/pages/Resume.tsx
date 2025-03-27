@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { fadeInUp, staggerContainer } from '../utils/animations';
 import styles from './Resume.module.css';
@@ -22,6 +22,44 @@ interface Experience {
 
 const Resume: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [expandedExperiences, setExpandedExperiences] = useState<number[]>([]);
+  const [expandedPositions, setExpandedPositions] = useState<string[]>([]);
+
+  const toggleExperience = (index: number) => {
+    setExpandedExperiences(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index) 
+        : [...prev, index]
+    );
+  };
+
+  const togglePosition = (expIndex: number, posIndex: number) => {
+    const positionId = `${expIndex}-${posIndex}`;
+    setExpandedPositions(prev => 
+      prev.includes(positionId)
+        ? prev.filter(id => id !== positionId)
+        : [...prev, positionId]
+    );
+  };
+
+  const isExpanded = (index: number) => expandedExperiences.includes(index);
+  const isPositionExpanded = (expIndex: number, posIndex: number) => 
+    expandedPositions.includes(`${expIndex}-${posIndex}`);
+
+  const contentVariants = {
+    hidden: { 
+      opacity: 0,
+      height: 0,
+      overflow: 'hidden',
+      transition: { duration: 0.2, ease: 'easeInOut' }
+    },
+    visible: { 
+      opacity: 1,
+      height: 'auto',
+      overflow: 'visible',
+      transition: { duration: 0.2, ease: 'easeInOut' }
+    }
+  };
 
   const scrollToContent = () => {
     // Scroll to bottom of page approach
@@ -251,22 +289,47 @@ const Resume: React.FC = () => {
                           </div>
                           <span className={styles.period}>{exp.period}</span>
                         </div>
-                        <div className={styles.bulletList}>
-                          {exp.bullets?.map((bullet, i) => (
-                            <div key={i} className={styles.bulletPoint}>
-                              <span className={styles.bulletMarker}></span>
-                              <span className={styles.bulletText}>{bullet}</span>
-                            </div>
-                          ))}
+                        
+                        {/* Add expand/collapse button */}
+                        <div 
+                          className={styles.expandDetailsRow}
+                          onClick={() => toggleExperience(index)}
+                        >
+                          <span className={styles.expandIconSmall}>
+                            {isExpanded(index) ? '−' : '+'}
+                          </span>
+                          <span className={styles.bulletListLabel}>
+                            {isExpanded(index) ? 'Hide details' : 'Show details'}
+                          </span>
                         </div>
+                        
+                        {/* Show bullet points only when expanded */}
+                        <AnimatePresence initial={false}>
+                          {isExpanded(index) && (
+                            <motion.div 
+                              className={styles.bulletList}
+                              initial="hidden"
+                              animate="visible"
+                              exit="hidden"
+                              variants={contentVariants}
+                            >
+                              {exp.bullets?.map((bullet, i) => (
+                                <div key={i} className={styles.bulletPoint}>
+                                  <span className={styles.bulletMarker}></span>
+                                  <span className={styles.bulletText}>{bullet}</span>
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     ) : (
                       // Multiple positions with descriptions
                       <div>
                         {exp.positions && (
                           <ul className={styles.roleList}>
-                            {exp.positions.map((position, i) => (
-                              <li key={i} className={styles.roleItem}>
+                            {exp.positions.map((position, posIndex) => (
+                              <li key={posIndex} className={styles.roleItem}>
                                 <div className={styles.positionHeader}>
                                   <div className={styles.titleTagGroup}>
                                     <h4 className={styles.roleItemTitle}>{position.title}</h4>
@@ -276,14 +339,39 @@ const Resume: React.FC = () => {
                                   </div>
                                   <span className={styles.period}>{position.period}</span>
                                 </div>
-                                <div className={styles.bulletList}>
-                                  {position.bullets.map((bullet, bulletIndex) => (
-                                    <div key={bulletIndex} className={styles.bulletPoint}>
-                                      <span className={styles.bulletMarker}></span>
-                                      <span className={styles.bulletText}>{bullet}</span>
-                                    </div>
-                                  ))}
+                                
+                                {/* Add expand/collapse button */}
+                                <div 
+                                  className={styles.expandDetailsRow}
+                                  onClick={() => togglePosition(index, posIndex)}
+                                >
+                                  <span className={styles.expandIconSmall}>
+                                    {isPositionExpanded(index, posIndex) ? '−' : '+'}
+                                  </span>
+                                  <span className={styles.bulletListLabel}>
+                                    {isPositionExpanded(index, posIndex) ? 'Hide details' : 'Show details'}
+                                  </span>
                                 </div>
+                                
+                                {/* Show bullet points only when expanded */}
+                                <AnimatePresence initial={false}>
+                                  {isPositionExpanded(index, posIndex) && (
+                                    <motion.div 
+                                      className={styles.bulletList}
+                                      initial="hidden"
+                                      animate="visible"
+                                      exit="hidden"
+                                      variants={contentVariants}
+                                    >
+                                      {position.bullets.map((bullet, bulletIndex) => (
+                                        <div key={bulletIndex} className={styles.bulletPoint}>
+                                          <span className={styles.bulletMarker}></span>
+                                          <span className={styles.bulletText}>{bullet}</span>
+                                        </div>
+                                      ))}
+                                    </motion.div>
+                                  )}
+                                </AnimatePresence>
                               </li>
                             ))}
                           </ul>
