@@ -6,13 +6,18 @@ import styles from './Resume.module.css';
 import '../styles/theme.css';
 
 interface Experience {
-  title: string;
+  title?: string;
   company: string;
-  companyDetails?: string;
   period: string;
   location: string;
-  bullets: string[];
-  tags: string[];
+  bullets?: string[];
+  tags?: string[];
+  positions?: { 
+    title: string; 
+    period: string;
+    bullets: string[];
+    tags: string[];
+  }[];
 }
 
 const Resume: React.FC = () => {
@@ -47,37 +52,54 @@ const Resume: React.FC = () => {
       university: 'University of Amsterdam',
       location: 'Amsterdam',
       isCompact: true
-    }
+    },
+    {
+      university: 'University of Strasbourg',
+      location: 'Strasbourg',
+      isCompact: true
+    },
   ];
 
   const experiences = [
     {
       title: 'Cloud Upgrade Engineer Intern',
       company: 'SAP',
-      companyDetails: 'ABAP, SAP HANA, JAVA, HTTP, SSL/TLS, SAML/SSO, SQL',
-      period: 'Jan 2023 - Aug 2023',
+      period: 'Jan 2025 - Aug 2025',
       location: 'Vancouver',
       bullets: [
-        'Conducted root-cause analysis using ABAP/JAVA to resolve system patch bugs, swarming with senior colleagues and cross-functional teams to develop and deliver solutions and subsequent corrective patches, and meet a daily target of 3 cases.',
-        'Enhanced system security and operational stability in SAP environments by resolving critical TLS/transport issues (certificate validation, TLS configuration, RFC/SAPRouter connectivity); implemented robust backup/recovery solutions; and ensured accurate data validation for seamless system migrations.'
+        'Conducted root-cause analysis using ABAP/JAVA to diagnose and resolve Snote patch issues including dependency conflicts, version incompatibility, transport request errors, and HTTP connection errors (type G/H), swarming with senior developers and cross-functional teams to deliver corrective patches.',
+        'Assisted customers in planning and executing SAP upgrades and database migrations, leveraging tools and methods such as DMO, system conversion, and SLT; addressed technical considerations including Unicode conversion, ABAP/Java stack alignment, and custom code compatibility to ensure data integrity and minimize business disruption.'
       ],
       tags: ['Internship']
     },
     {
-      title: 'Cloud Computing Course Teaching Assistant',
       company: 'Northeastern University',
-      companyDetails: 'AWS(EC2, RDS, VPC, ECR, ECS, CodePipeline), ML',
-      period: 'Jan 2023 - Present',
+      period: 'Jan 2025 - Present',
       location: 'Vancouver',
-      bullets: [],
-      tags: ['Part-time']
+      positions: [
+        { 
+          title: 'Cloud Computing Teaching Assistant', 
+          period: 'Jan 2025 - Present',
+          bullets: [
+            'Mentored students in building scalable and distributed system and machine learning solutions through hands-on projects.'
+          ],
+          tags: ['PART-TIME']
+        },
+        { 
+          title: 'Career Peer Ambassador', 
+          period: 'Jan 2025 - Present',
+          bullets: [
+            'Provided personalized career guidance and job search strategies to computer science and engineering students.',
+          ],
+          tags: ['PART-TIME']
+        }
+      ]
     },
     {
       title: 'Full Stack Development Intern',
-      company: 'Philips Health Technology',
-      companyDetails: 'Python, TypeScript, Redis, Git, TCP',
+      company: 'Philips',
       period: 'May 2024 - Aug 2024',
-      location: 'Vancouver',
+      location: 'Soochow',
       bullets: [
         'Developed a Python-based automated microservice within an Agile Scrum team to synchronize 1 million machine status records daily from Vertica and local Excel files to PostgreSQL. Implemented real-time translation of specific content by integrating the Azure Translation API and utilizing Redis for caching, which reduced API calls and decreased translation response time by 40%. Handled multiple language pairs and optimized costs and performance by using batch translation for large datasets.',
         'Upgraded from Vue2 to Vue3 with TypeScript for enhanced maintainability and type safety. Implemented Redux for state management, added new UI components, and optimized backend code for faster data fetching and loading via frontend-backend separation. Managed Git repositories, overseeing branching, merging, and conflict resolution for seamless collaboration.',
@@ -212,31 +234,62 @@ const Resume: React.FC = () => {
                   <div className={styles.cardHeader}>
                     <div className={styles.companySection}>
                       <h3 className={styles.primaryText}>{exp.company}</h3>
-                      {exp.companyDetails && (
-                        <span className={styles.companyDetails}>{exp.companyDetails}</span>
-                      )}
                     </div>
                     <span className={styles.location}>{exp.location}</span>
                   </div>
                   
                   <div className={styles.cardContent}>
-                    <div className={styles.titleRow}>
-                      <div className={styles.titleTagGroup}>
-                        <h4 className={styles.secondaryText}>{exp.title}</h4>
-                        {exp.tags.map((tag, i) => (
-                          <span key={i} className={styles.expTag}>{tag}</span>
-                        ))}
-                      </div>
-                      <span className={styles.period}>{exp.period}</span>
-                    </div>
-                    <div className={styles.bulletList}>
-                      {exp.bullets.map((bullet, i) => (
-                        <div key={i} className={styles.bulletPoint}>
-                          <span className={styles.bulletMarker}></span>
-                          <span className={styles.bulletText}>{bullet}</span>
+                    {exp.title ? (
+                      // Regular single job title
+                      <div>
+                        <div className={styles.titleRow}>
+                          <div className={styles.titleTagGroup}>
+                            <h4 className={styles.secondaryText}>{exp.title}</h4>
+                            {exp.tags?.map((tag, i) => (
+                              <span key={i} className={styles.expTag}>{tag}</span>
+                            ))}
+                          </div>
+                          <span className={styles.period}>{exp.period}</span>
                         </div>
-                      ))}
-                    </div>
+                        <div className={styles.bulletList}>
+                          {exp.bullets?.map((bullet, i) => (
+                            <div key={i} className={styles.bulletPoint}>
+                              <span className={styles.bulletMarker}></span>
+                              <span className={styles.bulletText}>{bullet}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ) : (
+                      // Multiple positions with descriptions
+                      <div>
+                        {exp.positions && (
+                          <ul className={styles.roleList}>
+                            {exp.positions.map((position, i) => (
+                              <li key={i} className={styles.roleItem}>
+                                <div className={styles.positionHeader}>
+                                  <div className={styles.titleTagGroup}>
+                                    <h4 className={styles.roleItemTitle}>{position.title}</h4>
+                                    {position.tags.map((tag, tagIndex) => (
+                                      <span key={tagIndex} className={styles.expTag}>{tag}</span>
+                                    ))}
+                                  </div>
+                                  <span className={styles.period}>{position.period}</span>
+                                </div>
+                                <div className={styles.bulletList}>
+                                  {position.bullets.map((bullet, bulletIndex) => (
+                                    <div key={bulletIndex} className={styles.bulletPoint}>
+                                      <span className={styles.bulletMarker}></span>
+                                      <span className={styles.bulletText}>{bullet}</span>
+                                    </div>
+                                  ))}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               ))}

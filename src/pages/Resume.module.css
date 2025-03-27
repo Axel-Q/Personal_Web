@@ -694,10 +694,10 @@
 .positionHeader {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: nowrap;
+  gap: 1rem;
 }
 
 .positionDetails {
@@ -716,48 +716,40 @@
 
 @media (max-width: 768px) {
   .positionHeader {
-    flex-direction: column;
-    gap: 0.3rem;
-    margin-bottom: 0.4rem;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
   
-  .positionDetails {
-    margin-top: 0.1rem;
-  }
-  
-  .positionLocation {
-    font-size: 0.8rem;
+  .titleTagGroup {
+    flex-basis: 100%;
   }
 }
 
 .roleList {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0 0 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  padding-top: 1.2rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .roleItem {
   position: relative;
   padding-left: 0;
-  margin-bottom: 2rem;
-  color: var(--elegant-gray-dark, #4a4a4a);
-}
-
-.roleItem:last-child {
   margin-bottom: 0;
+  color: var(--elegant-gray-dark, #4a4a4a);
 }
 
 .roleItemTitle {
   font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--elegant-black, #252525);
+  font-weight: 500;
+  color: var(--elegant-gray-dark, #4a4a4a);
   margin: 0;
   line-height: 1.4;
-  margin-bottom: 0.6rem;
-  display: block;
-  letter-spacing: -0.01em;
+  white-space: normal;
 }
 
 .roleItemDescription {
@@ -796,7 +788,7 @@
 .bulletList {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
   margin-top: 1.2rem;
 }
 
@@ -855,9 +847,13 @@
   text-align: justify;
   line-height: 1.6;
   letter-spacing: 0.01em;
+  white-space: normal;
+  word-break: normal;
+  word-spacing: normal;
+  hyphens: auto;
 }
 
-/* Add to existing responsive styles */
+/* Fix for text alignment in mobile view */
 @media (max-width: 768px) {
   .bulletList {
     gap: 1rem;
@@ -870,6 +866,7 @@
   .bulletText {
     font-size: 0.85rem;
     text-align: left;
+    word-spacing: normal;
   }
   
   .companyDetails {
