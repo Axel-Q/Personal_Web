@@ -6,7 +6,8 @@ import {
   HiHome,
   HiDocument,
   HiCollection,
-  HiCode
+  HiCode,
+  HiMail
 } from 'react-icons/hi';
 import styles from './Sidebar.module.css';
 
@@ -21,6 +22,7 @@ const Sidebar = ({ isExpanded, onToggle }: SidebarProps) => {
     { path: '/resume', label: 'Resume', icon: <HiDocument size={20} /> },
     { path: '/projects', label: 'Projects', icon: <HiCollection size={20} /> },
     { path: '/github', label: 'GitHub', icon: <HiCode size={20} /> },
+    { path: '/contact', label: 'Contact', icon: <HiMail size={20} /> },
   ];
 
   return (
