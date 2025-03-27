@@ -1,24 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
-import { fadeInUp, staggerContainer } from '../utils/animations';
+import { fadeInUp } from '../utils/animations';
 import styles from './Resume.module.css';
 import '../styles/theme.css';
-
-interface Experience {
-  title?: string;
-  company: string;
-  period: string;
-  location: string;
-  bullets?: string[];
-  tags?: string[];
-  positions?: { 
-    title: string; 
-    period: string;
-    bullets: string[];
-    tags: string[];
-  }[];
-}
 
 const Resume: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
