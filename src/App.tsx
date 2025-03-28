@@ -8,7 +8,6 @@ import styles from './App.module.css';
 const Home = lazy(() => import('./pages/Home'));
 const Resume = lazy(() => import('./pages/Resume'));
 const Projects = lazy(() => import('./pages/Projects'));
-const GitHub = lazy(() => import('./pages/GitHub'));
 const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/resume" element={<Resume />} />
                 <Route path="/projects" element={<Projects />} />
-                <Route path="/github" element={<GitHub />} />
                 <Route path="/contact" element={<Contact />} />
               </Routes>
             </AnimatePresence>

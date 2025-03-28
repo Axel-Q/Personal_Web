@@ -21,7 +21,6 @@ const Sidebar = ({ isExpanded, onToggle }: SidebarProps) => {
     { path: '/', label: 'Home', icon: <HiHome size={20} /> },
     { path: '/resume', label: 'Resume', icon: <HiDocument size={20} /> },
     { path: '/projects', label: 'Projects', icon: <HiCollection size={20} /> },
-    { path: '/github', label: 'GitHub', icon: <HiCode size={20} /> },
     { path: '/contact', label: 'Contact', icon: <HiMail size={20} /> },
   ];
 

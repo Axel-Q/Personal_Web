@@ -10,10 +10,9 @@ const Projects: React.FC = () => {
 
   // GitHub stats data
   const githubStats = [
-    { label: 'stars', value: '120', icon: <FiStar size={16} /> },
-    { label: 'commits', value: '450', icon: <FiGitCommit size={16} /> },
-    { label: 'repositories', value: '25', icon: <FiDatabase size={16} /> },
-    { label: 'contributions', value: '1200', icon: <FiActivity size={16} /> },
+    { label: 'commits', value: '150', icon: <FiGitCommit size={16} /> },
+    { label: 'repositories', value: '9', icon: <FiDatabase size={16} /> },
+    { label: 'contributions', value: '112', icon: <FiActivity size={16} /> },
   ];
 
   const projects = [
@@ -127,7 +126,7 @@ const Projects: React.FC = () => {
                   </a>
                   <span className={styles.stat}>
                     <FiDatabase size={16} />
-                    <span>25 repositories</span>
+                    <span>9 repositories</span>
                   </span>
                 </div>
               </motion.div>
