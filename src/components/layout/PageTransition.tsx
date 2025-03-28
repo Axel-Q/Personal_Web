@@ -11,7 +11,16 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
+      transition={{ 
+        duration: 0.3,
+        ease: "easeInOut",
+        staggerChildren: 0.1
+      }}
+      style={{
+        width: '100%',
+        position: 'relative',
+        willChange: 'transform, opacity'
+      }}
     >
       {children}
     </motion.div>
