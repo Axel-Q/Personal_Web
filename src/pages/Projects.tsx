@@ -3,47 +3,83 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
 import styles from './Projects.module.css';
-import { FiGithub, FiExternalLink, FiInfo } from 'react-icons/fi';
+import { FiGithub, FiExternalLink, FiInfo, FiCode, FiStar, FiGitCommit, FiDatabase, FiActivity } from 'react-icons/fi';
 
 const Projects: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  // GitHub stats data
+  const githubStats = [
+    { label: 'stars', value: '120', icon: <FiStar size={16} /> },
+    { label: 'commits', value: '450', icon: <FiGitCommit size={16} /> },
+    { label: 'repositories', value: '25', icon: <FiDatabase size={16} /> },
+    { label: 'contributions', value: '1200', icon: <FiActivity size={16} /> },
+  ];
 
   const projects = [
     {
       id: '1',
       title: 'MoviesTracker',
       description: 'A React Native-powered mobile app for movie ratings and reviews with a sleek UI.',
-      tags: ['React', 'Node.js', 'MongoDB'],
+      tags: ['React Native', 'JavaScript'],
       imageUrl: '/movie_tracker.jpg',
       githubUrl: 'https://github.com/Axel-Q/MoviesTracker',
       liveUrl: '',
     },
     {
       id: '2',
-      title: 'Weather App',
-      description: 'Real-time weather forecasting application with interactive maps and data visualization.',
-      tags: ['JavaScript', 'React', 'CSS'],
+      title: 'Kanbas React Web App',
+      description: 'A React web application for CS5610, featuring a Kanban-style board for project management.',
+      tags: ['React', 'TypeScript', 'Web Development'],
       imageUrl: '/profile-photo.jpg',
-      githubUrl: 'https://github.com/yourusername/weather-app',
-      liveUrl: 'https://weather-app-demo.vercel.app',
+      githubUrl: 'https://github.com/Axel-Q/kanbas-react-web-app',
+      liveUrl: '',
     },
     {
       id: '3',
-      title: 'Task Manager',
-      description: 'A productivity application for managing tasks with drag-and-drop functionality.',
-      tags: ['React', 'Node.js', 'MongoDB'],
+      title: 'Kanbas Node Server',
+      description: 'Node.js backend server application that provides API endpoints for the Kanbas web application.',
+      tags: ['Node.js', 'JavaScript', 'Backend'],
       imageUrl: '/google.jpg',
-      githubUrl: 'https://github.com/yourusername/task-manager',
+      githubUrl: 'https://github.com/Axel-Q/kanbas-node-server-app',
+      liveUrl: '',
     },
     {
       id: '4',
-      title: 'Portfolio Website',
-      description: 'Personal portfolio website showcasing projects and skills, built with React and Framer Motion.',
-      tags: ['React', 'TypeScript', 'CSS'],
+      title: 'Mobile Development',
+      description: 'Collection of mobile application projects showcasing cross-platform development skills.',
+      tags: ['JavaScript', 'Mobile', 'React Native'],
       imageUrl: '/saa.jpg',
-      githubUrl: 'https://github.com/yourusername/portfolio',
-      liveUrl: 'https://your-portfolio.com',
+      githubUrl: 'https://github.com/Axel-Q/Mobile',
+      liveUrl: '',
     },
+    {
+      id: '5',
+      title: 'A1Mobile',
+      description: 'Mobile application development assignment featuring modern UI components and responsive design.',
+      tags: ['JavaScript', 'Mobile', 'UI Design'],
+      imageUrl: '/profile-photo2.jpg',
+      githubUrl: 'https://github.com/Axel-Q/A1Mobile',
+      liveUrl: '',
+    },
+    {
+      id: '6',
+      title: 'A2Mobile',
+      description: 'Advanced mobile application project with complex state management and API integration.',
+      tags: ['JavaScript', 'Mobile', 'API Integration'],
+      imageUrl: '/movie_tracker.jpg',
+      githubUrl: 'https://github.com/Axel-Q/A2Mobile',
+      liveUrl: '',
+    },
+    {
+      id: '7',
+      title: 'VotingAppSolana',
+      description: 'Blockchain-based voting application built on the Solana network featuring secure and transparent voting mechanisms.',
+      tags: ['TypeScript', 'Blockchain', 'Solana'],
+      imageUrl: '/google.jpg',
+      githubUrl: 'https://github.com/Axel-Q/VotingAppSolana',
+      liveUrl: '',
+    }
   ];
 
   // Extract unique tags from all projects
@@ -61,14 +97,78 @@ const Projects: React.FC = () => {
   return (
     <PageTransition>
       <div className={styles.container}>
-        <motion.h1
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
-          className={styles.pageTitle}
-        >
-          Projects
-        </motion.h1>
+        <div className={styles.githubHeader}>
+          <div className={styles.githubProfile}>
+            <div className={styles.profileHeader}>
+              <motion.div 
+                className={styles.profileImage}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                <FiCode size={28} />
+              </motion.div>
+              <motion.div 
+                className={styles.profileInfo}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              >
+                <h1 className={styles.pageTitle}>My GitHub Projects</h1>
+                <div className={styles.githubStats}>
+                  <a 
+                    href="https://github.com/Axel-Q" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className={styles.githubLink}
+                  >
+                    <FiGithub size={16} />
+                    <span>@Axel-Q</span>
+                  </a>
+                  <span className={styles.stat}>
+                    <FiDatabase size={16} />
+                    <span>25 repositories</span>
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+            <motion.p 
+              className={styles.githubBio}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
+              Showcasing my projects from GitHub. Click on a tag to filter by technology.
+            </motion.p>
+          </div>
+          
+          <motion.div 
+            className={styles.githubStatsCards}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            {githubStats.map((stat, index) => (
+              <motion.div 
+                key={stat.label}
+                className={styles.statCard}
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { delay: 0.3 + (index * 0.1) }
+                }}
+              >
+                <span className={styles.statValue}>{stat.value}</span>
+                <span className={styles.statLabel}>
+                  {stat.icon}
+                  <span>{stat.label}</span>
+                </span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
         
         <motion.div 
           className={styles.filters}
