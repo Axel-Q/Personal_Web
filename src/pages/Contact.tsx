@@ -50,7 +50,7 @@ const Contact: React.FC = () => {
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.5, 
+        duration: 0.1, 
         staggerChildren: 0.1,
         when: "beforeChildren" 
       }
@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.1 } }
   };
 
   // Success message variants
@@ -120,7 +120,7 @@ const Contact: React.FC = () => {
                   variants={formVariants}
                   initial="hidden"
                   animate="visible"
-                  exit={{ opacity: 0, y: -50, transition: { duration: 0.3 } }}
+                  exit={{ opacity: 0, y: -50, transition: { duration: 0.1 } }}
                   onSubmit={handleSubmit}
                   className={styles.contactForm}
                   key="contact-form"
