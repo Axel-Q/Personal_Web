@@ -73,4 +73,29 @@ html, body {
 
 * {
   box-sizing: border-box;
+}
+
+/* Add these rules to ensure consistent vertical text rendering */
+[writing-mode="vertical-rl"],
+[writing-mode="vertical-lr"],
+.vertical-text,
+*[style*="writing-mode: vertical"],
+*[class*="vertical"] {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-weight: 300 !important;
+  font-display: swap;
+}
+
+/* Font optimization for vertical text */
+h1, h2, h3, h4, h5, h6, 
+.title, 
+[class*="title"] {
+  font-family: var(--font-primary, 'Space Grotesk', sans-serif);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-display: swap;
+  font-weight: 300;
 } 

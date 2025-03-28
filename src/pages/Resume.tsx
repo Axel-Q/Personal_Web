@@ -1,14 +1,74 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { fadeInUp } from '../utils/animations';
 import styles from './Resume.module.css';
 import '../styles/theme.css';
 
+// Font loading detection helper
+const fontLoaded = (fontFamily: string): Promise<boolean> => {
+  return document.fonts.ready.then(() => {
+    // Try to load the font directly
+    try {
+      const font = new FontFace(
+        'Space Grotesk',
+        'url(https://fonts.gstatic.com/s/spacegrotesk/v15/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXsrPMBTTA.woff2) format("woff2")',
+        { weight: '300' }
+      );
+      
+      // Add to document fonts
+      document.fonts.add(font);
+      
+      // Load the font
+      return font.load().then(() => {
+        return true;
+      }).catch(() => {
+        // Fallback to standard check if direct loading fails
+        return document.fonts.check(`300 1em "${fontFamily}"`);
+      });
+    } catch (e) {
+      // Fallback to standard check if anything goes wrong
+      return document.fonts.check(`300 1em "${fontFamily}"`);
+    }
+  });
+};
+
 const Resume: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const [expandedExperiences, setExpandedExperiences] = useState<number[]>([]);
   const [expandedPositions, setExpandedPositions] = useState<string[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [fontIsReady, setFontIsReady] = useState(false);
+
+  // Add effect to ensure consistent layout after component mounts
+  useEffect(() => {
+    // Check if font is loaded
+    fontLoaded('Space Grotesk').then((loaded) => {
+      setFontIsReady(loaded);
+      // Apply explicit font styling to the title element
+      if (titleRef.current) {
+        Object.assign(titleRef.current.style, {
+          fontFamily: "'Space Grotesk', sans-serif",
+          fontWeight: "300",
+          fontStyle: "normal",
+          textRendering: "optimizeLegibility",
+          WebkitFontSmoothing: "antialiased",
+          MozOsxFontSmoothing: "grayscale"
+        });
+      }
+      // Short delay to ensure styles are applied before showing
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 100);
+    });
+
+    // Cleanup function
+    return () => {
+      setIsLoaded(false);
+      setFontIsReady(false);
+    };
+  }, []);
 
   const toggleExperience = (index: number) => {
     setExpandedExperiences(prev => 
@@ -145,19 +205,25 @@ const Resume: React.FC = () => {
   return (
     <PageTransition>
       <div className={styles.container}>
-        <motion.h1
-          variants={fadeInUp}
-          initial="initial"
-          animate="animate"
+        <motion.div
+          ref={titleRef}
           className={styles.title}
           onClick={scrollToContent}
           whileHover={{ y: -5 }}
           whileTap={{ scale: 0.98 }}
           title="Click to scroll through resume"
           aria-label="Click to scroll through resume"
+          style={{ 
+            opacity: isLoaded && fontIsReady ? 1 : 0,
+            fontWeight: 300,
+            visibility: isLoaded && fontIsReady ? 'visible' : 'hidden'
+          }}
+          variants={fadeInUp}
+          initial="initial"
+          animate="animate"
         >
           Resume
-        </motion.h1>
+        </motion.div>
         
         <motion.div 
           className={styles.scrollArrow}
@@ -166,9 +232,12 @@ const Resume: React.FC = () => {
           whileTap={{ scale: 0.95 }}
           title="Scroll down to view resume"
           aria-label="Scroll down to view resume"
-          initial={{ opacity: 1 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2 }}
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: isLoaded && fontIsReady ? 1 : 0,
+            visibility: isLoaded && fontIsReady ? 'visible' : 'hidden'
+          }}
+          transition={{ duration: 0.2, delay: 0.1 }}
         >
           <span className={styles.scrollArrowPulse}></span>
           <span className={styles.arrowTooltip}>Click to scroll down</span>
